@@ -6,7 +6,7 @@ public class Response<T> implements Serializable {
     private static final long serialVersionUID = -750644833749014618L;
     private boolean success;
     private T result;
-    private String code;
+    private int code;
     private String error;
 
     public static long getSerialVersionUID() {
@@ -25,11 +25,11 @@ public class Response<T> implements Serializable {
         return result;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -45,7 +45,7 @@ public class Response<T> implements Serializable {
         this.success = false;
         this.error = error;
     }
-    public void setError(String code, String error) {
+    public void setError(int code, String error) {
         this.success = false;
         this.code = code;
         this.error = error;

@@ -31,4 +31,6 @@ public class AdminModel {
      * id
      */
     private Long id;
+
+    private Integer roleId;
 }

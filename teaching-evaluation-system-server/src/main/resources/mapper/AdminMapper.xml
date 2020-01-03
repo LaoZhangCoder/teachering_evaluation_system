@@ -8,18 +8,19 @@
         <result column="admin_password" property="adminPassword" jdbcType="VARCHAR"/>
         <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
         <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
+        <result column="role_id" property="roleId" jdbcType="BIGINT"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, admin_name, admin_id, admin_password, created_at,updated_at
+    id, admin_name, admin_id, admin_password, created_at,updated_at,role_id
   </sql>
     <sql id="criteria">
         <where>
-            <if test="adminName != null">AND `admin_name` = #{adminName}</if>
+            <if test="userName != null">AND `admin_name` = #{userName}</if>
             <if test="adminId != null">AND `admin_id` = #{adminId}</if>
             <if test="adminPassword != null">AND `admin_password` = #{adminPassword}</if>
         </where>
     </sql>
-    <select id="findByUniqueIndex" resultType="BaseResultMap" parameterType="map">
+    <select id="findByUniqueIndex" resultMap="BaseResultMap" parameterType="map">
         select
         <include refid="Base_Column_List"/>
         from admin

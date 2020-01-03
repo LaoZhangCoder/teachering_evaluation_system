@@ -4,11 +4,13 @@ import com.google.common.collect.Maps;
 import com.shendehaizi.Exception.RoleNotIncludeException;
 import com.shendehaizi.Exception.ServiceException;
 import com.shendehaizi.dao.AdminDao;
+import com.shendehaizi.enums.Code;
 import com.shendehaizi.enums.UserRole;
 import com.shendehaizi.model.AdminModel;
 import com.shendehaizi.request.LoginRequest;
 import com.shendehaizi.response.Response;
 import com.shendehaizi.service.LoginService;
+import com.shendehaizi.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +49,8 @@ public class LoginServiceImpl implements LoginService {
             loginResponse.setError("用户id错误!");
             throw new ServiceException("用户id错误!");
         }
-        loginResponse.setResult(loginRequest.getUserId()+"admin");
+        loginResponse.setResult(MD5Util.encrypt_Base64(loginRequest.getUserId()+"_admin"));
+        loginResponse.setCode(Code.SUCCESS.getStatus());
         return loginResponse;
         }
 

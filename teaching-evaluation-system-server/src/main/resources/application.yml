@@ -2,9 +2,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:member-dev}?useUnicode=true&characterEncoding=UTF8&useSSL=false&autoReconnect=true&allowMultiQueries=true
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:evaluationsystem}?useUnicode=true&characterEncoding=UTF8&useSSL=false&autoReconnect=true&allowMultiQueries=true&serverTimezone=UTC
     username: ${MYSQL_USERNAME:root}
-    password: ${MYSQL_PASSWORD:123456}
+    password: ${MYSQL_PASSWORD:6112118}
     druid:
       enable: true
       initial-size: 60
@@ -16,3 +16,9 @@ spring:
 mybatis:
   mapper-locations: classpath*:mapper/*Mapper.xml
   type-aliases-package: com.shendehaizi.model
+server:
+  port: 8888
+
+logging:
+  file:
+    path: /logs/
