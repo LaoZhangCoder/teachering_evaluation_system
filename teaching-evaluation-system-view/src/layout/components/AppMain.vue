@@ -1,50 +1,48 @@
 <template>
-  <el-row>
-    <el-col>
-      <el-card style="height:80px;width: 300px;float: left; margin-left:3%">
-        <svg-icon icon-class="student" style="width: 100px;height: 100px;margin-top: -30px" />
-        <div style="padding: 14px; float: right;">
-          <span class="count">263</span>
-          <span style="font-size: 10px">学生数量</span>
-        </div>
-      </el-card>
-      <el-card style="height:80px;width: 300px;float: left; margin-left:3%">
-        <svg-icon icon-class="classmate" style="width: 100px;height: 100px;margin-top: -30px" />
-        <div style="padding: 14px; float: right">
-          <span class="count">9</span>
-          <span style="font-size: 10px">班级数量</span>
-        </div>
-      </el-card>
-      <el-card style="height:80px;width: 300px;float: left; margin-left:3%">
-        <svg-icon icon-class="teacher" style="width: 100px;height: 100px;margin-top: -30px" />
-        <div style="padding: 14px; float: right">
-          <span class="count">15</span>
-          <span style="font-size: 10px">教师数量</span>
-        </div>
-      </el-card>
-      <el-card style="height:80px;width: 300px;float: left; margin-left:3%">
-        <svg-icon icon-class="book" style="width: 100px;height: 100px;margin-top: -30px" />
-        <div style="padding: 14px; float: right">
-          <span class="count">15</span>
-          <span style="font-size: 10px">科目数量</span>
-        </div>
-      </el-card>
-    </el-col>
-     <ciclechart></ciclechart>
-  </el-row>
+        <router-view :key="key" />
 </template>
 
-<style>
-  .count{
-    font-weight: bold;
-    display: block;
-    margin-left: 25%;
-  }
-</style>
 <script>
-import ciclechart from '@/views/charts/ciclechart'
 export default {
   name: 'AppMain',
-  components: { ciclechart }
+  computed: {
+    key() {
+      return this.$route.path
+    }
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+  .app-main {
+    /* 50= navbar  50  */
+    min-height: calc(100vh - 50px);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fixed-header+.app-main {
+    padding-top: 50px;
+  }
+
+  .hasTagsView {
+    .app-main {
+      /* 84 = navbar + tags-view = 50 + 34 */
+      min-height: calc(100vh - 84px);
+    }
+
+    .fixed-header+.app-main {
+      padding-top: 84px;
+    }
+  }
+</style>
+
+<style lang="scss">
+  // fix css style bug in open el-dialog
+  .el-popup-parent--hidden {
+    .fixed-header {
+      padding-right: 15px;
+    }
+  }
+</style>

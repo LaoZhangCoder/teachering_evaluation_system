@@ -71,17 +71,35 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/department',
+
+    // 你可以选择不同的layout组件
+    component: Layout,
+
+    // 这里开始对应的路由都会显示在app-main中 如上图所示
+    children: [{
+      path: 'index',
+      component: () => import('@/views/documentation/index'),
+      name: 'documentation'
+    }]
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
     children: [
       {
         path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
+        component: () => import('@/views/admin/index'),
         name: 'Dashboard',
         meta: { title: '首页', icon: 'dashboard', affix: true }
       }
     ]
+  },
+  {
+    path: '/register',
+    component: () => import('@/views/register/index'),
+    hidden: true
   },
   {
     path: '/profile',
