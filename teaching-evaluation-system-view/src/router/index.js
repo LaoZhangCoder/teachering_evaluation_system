@@ -80,7 +80,8 @@ export const constantRoutes = [
     children: [{
       path: 'index',
       component: () => import('@/views/documentation/index'),
-      name: 'documentation'
+      name: '院系管理',
+      meta: { title: '院系管理', icon: 'dashboard', affix: true }
     }]
   },
   {
@@ -91,7 +92,7 @@ export const constantRoutes = [
       {
         path: 'dashboard',
         component: () => import('@/views/admin/index'),
-        name: 'Dashboard',
+        name: '首页',
         meta: { title: '首页', icon: 'dashboard', affix: true }
       }
     ]

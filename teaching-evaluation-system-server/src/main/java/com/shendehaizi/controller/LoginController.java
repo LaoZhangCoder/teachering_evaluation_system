@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
     @Autowired
     private LoginService loginService;
-@PostMapping(value = "user/login")
-public Response handleLogin(@RequestBody LoginRequest request){
-    Response<String> response = loginService.loginCheck(request);
-    return response;
-}
+
+    @PostMapping(value = "user/login")
+    public Response handleLogin(@RequestBody LoginRequest request) {
+        Response<String> response = loginService.loginCheck(request);
+        return response;
+    }
 
 }

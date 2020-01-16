@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/user'
+import { login, logout, getInfo, addDeparment } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 const state = {
@@ -54,6 +54,23 @@ const actions = {
         const { name, avatar } = data
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
+        resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
+  addDeparment({ commit, state }) {
+    alert(3)
+    return new Promise((resolve, reject) => {
+      addDeparment(state.name).then(response => {
+        const data = response
+        if (!data) {
+          reject('add failed, please add again.')
+        }
+        const { name } = data
+        commit('SET_NAME', name)
         resolve(data)
       }).catch(error => {
         reject(error)

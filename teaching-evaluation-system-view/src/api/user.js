@@ -15,6 +15,14 @@ export function getInfo(token) {
   })
 }
 
+export function addDepartment(departmentName) {
+  return request({
+    url: '/department/add',
+    method: 'get',
+    params: { departmentName }
+  })
+}
+
 export function logout() {
   return request({
     url: '/sign-out',

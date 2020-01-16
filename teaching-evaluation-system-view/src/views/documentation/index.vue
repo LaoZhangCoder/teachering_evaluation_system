@@ -1,56 +1,84 @@
 <template>
-  <div class="app-container documentation-container">
-    <a class="document-btn" target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/">Documentation</a>
-    <a class="document-btn" target="_blank" href="https://github.com/PanJiaChen/vue-element-admin/">Github Repository</a>
-    <a class="document-btn" target="_blank" href="https://panjiachen.gitee.io/vue-element-admin-site/zh/">国内文档</a>
-    <dropdown-menu class="document-btn" :items="articleList" title="系列文章" />
-    <a class="document-btn" target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/zh/job/">内推招聘</a>
-  </div>
+  <el-table
+    :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+    style="width: 100%">
+    <el-table-column
+      label="创建时间"
+      prop="date">
+    </el-table-column>
+    <el-table-column
+      label="院系名称"
+      prop="name">
+    </el-table-column>
+    <el-table-column
+      align="right">
+      <template slot="header" slot-scope="scope">
+        <el-input
+          v-model="search"
+          size="mini"
+          placeholder="输入关键字搜索"/>
+      </template>
+      <template slot-scope="scope">
+        <el-button
+          size="mini"
+          @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+        <el-button
+          size="mini"
+          type="danger"
+          @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+        <el-button type="success"  size="mini" @click="open">add</el-button>
+      </template>
+    </el-table-column>
+  </el-table>
 </template>
 
 <script>
-import DropdownMenu from '@/components/Share/DropdownMenu'
-
-export default {
-  name: 'Documentation',
-  components: { DropdownMenu },
-  data() {
-    return {
-      articleList: [
-        { title: '基础篇', href: 'https://juejin.im/post/59097cd7a22b9d0065fb61d2' },
-        { title: '登录权限篇', href: 'https://juejin.im/post/591aa14f570c35006961acac' },
-        { title: '实战篇', href: 'https://juejin.im/post/593121aa0ce4630057f70d35' },
-        { title: 'vue-admin-template 篇', href: 'https://juejin.im/post/595b4d776fb9a06bbe7dba56' },
-        { title: 'v4.0 篇', href: 'https://juejin.im/post/5c92ff94f265da6128275a85' },
-        { title: '自行封装 component', href: 'https://segmentfault.com/a/1190000009090836' },
-        { title: '优雅的使用 icon', href: 'https://juejin.im/post/59bb864b5188257e7a427c09' },
-        { title: 'webpack4（上）', href: 'https://juejin.im/post/59bb864b5188257e7a427c09' },
-        { title: 'webpack4（下）', href: 'https://juejin.im/post/5b5d6d6f6fb9a04fea58aabc' }
-      ]
-    }
+  import { addDepartment } from '@/api/user'
+  export default {
+    data() {
+      return {
+        tableData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }],
+        search: ''
+      }
+    },
+    methods: {
+      handleEdit(index, row) {
+        console.log(index, row);
+      },
+      handleDelete(index, row) {
+        console.log(index, row);
+      },
+      open() {
+        this.$prompt('请输入院系名称', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          inputPattern: /[]?/,
+        }).then(({ value }) => {
+          this.handleAdd(value)
+        })
+      },
+      handleAdd(name){
+        this.loading = true
+        addDepartment(name).then(response => {
+          this.listLoading = false
+        })
+      }
+    },
   }
-}
 </script>
-
-<style lang="scss" scoped>
-.documentation-container {
-  margin: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-
-  .document-btn {
-    flex-shrink: 0;
-    display: block;
-    cursor: pointer;
-    background: black;
-    color: white;
-    height: 60px;
-    width: 200px;
-    margin-bottom: 16px;
-    line-height: 60px;
-    font-size: 20px;
-    text-align: center;
-  }
-}
-</style>
