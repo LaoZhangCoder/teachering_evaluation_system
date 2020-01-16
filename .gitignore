@@ -1,0 +1,15 @@
+teaching-evaluation-system-server/.idea
+teaching-evaluation-system-server/.mvn
+teaching-evaluation-system-server/target
+teaching-evaluation-system-server/.gitignore
+teaching-evaluation-system-server/evaluation
+teaching-evaluation-system-server/evaluation.log
+teaching-evaluation-system-server/HELP.md
+teaching-evaluation-system-server/mvnw
+teaching-evaluation-system-server/mvnw.cmd
+teaching-evaluation-system-server/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+**/*.log
