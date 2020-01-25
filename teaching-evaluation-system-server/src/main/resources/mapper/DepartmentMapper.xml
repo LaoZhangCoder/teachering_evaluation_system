@@ -22,6 +22,14 @@
         from department
         <include refid="criteria" />
     </select>
+    <delete id="delete" parameterType="long">
+        delete from department where id=#{id}
+    </delete>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from department
+    </select>
     <insert id="create"
             parameterType="DepartmentModel">
         insert  into department
@@ -54,4 +62,19 @@
             </if>
         </trim>
     </insert>
+    <update id="update" parameterType="DepartmentModel">
+        update department
+        <set>
+            <if test="departmentName != null">
+                department_name = #{departmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="createAt != null">
+                createAt = #{createAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateAt != null">
+                updateAt = #{updateAt,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

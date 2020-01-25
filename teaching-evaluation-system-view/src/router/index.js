@@ -85,6 +85,34 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/major',
+
+    // 你可以选择不同的layout组件
+    component: Layout,
+
+    // 这里开始对应的路由都会显示在app-main中 如上图所示
+    children: [{
+      path: 'index',
+      component: () => import('@/views/major/index'),
+      name: '专业管理',
+      meta: { title: '专业管理', icon: 'dashboard', affix: true }
+    }]
+  },
+  {
+    path: '/major',
+
+    // 你可以选择不同的layout组件
+    component: Layout,
+
+    // 这里开始对应的路由都会显示在app-main中 如上图所示
+    children: [{
+      path: 'add',
+      component: () => import('@/views/major/add'),
+      name: '添加专业',
+      meta: { title: '专业管理', icon: 'dashboard', affix: true }
+    }]
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',

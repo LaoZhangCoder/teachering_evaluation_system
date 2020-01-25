@@ -21,4 +21,5 @@ server:
 
 logging:
   file:
-    path: /logs/
+    path: ./logs
+    name: spring.log
