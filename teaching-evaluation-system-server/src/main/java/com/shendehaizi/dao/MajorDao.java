@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class MajorDao extends MyBatisDao<MajorModel> {
+
 }

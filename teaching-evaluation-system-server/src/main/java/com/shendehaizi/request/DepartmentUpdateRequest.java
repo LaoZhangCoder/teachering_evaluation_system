@@ -8,4 +8,6 @@ public class DepartmentUpdateRequest {
     private String newDepartmentName;
 
     private String oldDepartmentName;
+
+    private Integer id;
 }

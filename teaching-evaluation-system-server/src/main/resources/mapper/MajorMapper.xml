@@ -22,6 +22,12 @@
         from major
         <include refid="criteria" />
     </select>
+    <select id="findById" resultMap="BaseResultMap" parameterType="long">
+        select
+        <include refid="Base_Column_List"/>
+        from major
+        id=#{id}
+    </select>
     <delete id="delete" parameterType="long">
         delete from major where id=#{id}
     </delete>
@@ -66,7 +72,7 @@
         update major
         <set>
             <if test="majorName != null">
-                major_name = #{departmentName,jdbcType=VARCHAR},
+                major_name = #{majorName,jdbcType=VARCHAR},
             </if>
             <if test="createDate != null">
                 create_date = #{createDate,jdbcType=TIMESTAMP},

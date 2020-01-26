@@ -14,8 +14,16 @@
     <sql id="criteria">
         <where>
             <if test="id != null">AND `id` = #{id}</if>
+            <if test="majorId != null">AND `major_id` = #{majorId}</if>
+            <if test="departmentId != null">AND `department_id` = #{departmentId}</if>
         </where>
     </sql>
+    <select id="findByUniqueIndex" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from major_department_relation
+        <include refid="criteria" />
+    </select>
     <select id="list" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"></include>
@@ -76,4 +84,11 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
+    <delete id="delete" parameterType="long">
+        delete from major_department_relation where id=#{id}
+    </delete>
+
+    <delete id="deleteByMajorId" parameterType="long">
+        delete from major_department_relation where major_id=#{majorId}
+    </delete>
 </mapper>

@@ -28,12 +28,12 @@
       <template slot-scope="scope">
         <el-button
           size="mini"
-          @click="handleEdit(scope.$index, scope.row)"
+          @click="handleEdit(scope.$index)"
         >Edit</el-button>
         <el-button
           size="mini"
           type="danger"
-          @click="handleDelete(scope.$index, scope.row)"
+          @click="handleDelete(scope.$index)"
         >Delete</el-button>
         <el-button type="success" size="mini" @click="open">add</el-button>
       </template>
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { listMajor } from '@/api/user'
+import { listMajor, deleteMajor } from '@/api/user'
 export default {
   data() {
     return {
@@ -57,11 +57,12 @@ export default {
     })
   },
   methods: {
-    handleEdit(index, row) {
-      console.log(index, row)
+    handleEdit(data) {
+      this.$router.push({ path: '/major/update', query: { id: this.tableData[data].majorId, departmentId: this.tableData[data].departmentId }})
     },
-    handleDelete(index, row) {
-      console.log(index, row)
+    handleDelete(data) {
+      deleteMajor(this.tableData[data].majorId)
+      location.reload()
     },
     open() {
       this.$router.push('/major/add')

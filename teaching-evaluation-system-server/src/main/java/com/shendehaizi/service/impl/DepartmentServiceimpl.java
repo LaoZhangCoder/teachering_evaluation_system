@@ -3,6 +3,7 @@ package com.shendehaizi.service.impl;
 import com.google.common.collect.Maps;
 import com.shendehaizi.Exception.ServiceException;
 import com.shendehaizi.dao.DeparmentDao;
+import com.shendehaizi.dao.MajorDepartmentRelationDao;
 import com.shendehaizi.enums.Code;
 import com.shendehaizi.model.DepartmentModel;
 import com.shendehaizi.request.DeparmentRequest;
@@ -53,6 +54,7 @@ public class DepartmentServiceimpl implements DepartmentService {
             throw new ServiceException("院系不存在!");
         }
         Boolean delete = deparmentDao.delete(Long.valueOf(result.getId()));
+        //删除院系下面的专业
         deleteResult.setSuccess(delete);
         deleteResult.setCode(Code.SUCCESS.getStatus());
         deleteResult.setResult("删除成功");
@@ -80,15 +82,17 @@ public class DepartmentServiceimpl implements DepartmentService {
     public Response<String> updateDepartment(DepartmentUpdateRequest request) {
         Response<String> response = new Response<>();
         Map<String, Object> map=Maps.newHashMap();
-        map.put("departmentName",request.getOldDepartmentName());
+        map.put("departmentName",request.getNewDepartmentName());
         DepartmentModel departmentInfo = deparmentDao.findByUniqueIndex(map);
-        if(departmentInfo==null){
+        if(departmentInfo!=null&&!departmentInfo.getId().equals(request.getId())){
             response.setCode(Code.ERROR.getStatus());
-            response.setError("更新的用户不存在!");
-            throw new ServiceException("更新的用户不存在!");
+            response.setError("更新的院系名已存在!");
+            throw new ServiceException("更新的院系名已存在!");
         }
-        departmentInfo.setDepartmentName(request.getNewDepartmentName());
+        departmentInfo=new DepartmentModel();
         departmentInfo.setUpdateAt(new Date());
+        departmentInfo.setDepartmentName(request.getNewDepartmentName());
+        departmentInfo.setId(request.getId());
         Boolean update = deparmentDao.update(departmentInfo);
         response.setCode(Code.SUCCESS.getStatus());
         response.setSuccess(update);

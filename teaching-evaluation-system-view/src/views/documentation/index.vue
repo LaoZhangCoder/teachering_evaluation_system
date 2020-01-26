@@ -61,7 +61,7 @@ export default {
         inputValue: this.tableData[data].name,
         inputPattern: /[]?/
       }).then(({ value }) => {
-        this.handleUpdate(value, this.tableData[data].name)
+        this.handleUpdate(value, this.tableData[data].name,this.tableData[data].id)
       })
     },
     handleDelete(data) {
@@ -85,9 +85,9 @@ export default {
         })
       })
     },
-    handleUpdate(newValue, oldValue) {
+    handleUpdate(newValue, oldValue, id) {
       this.loading = true
-      updateDepartment(newValue, oldValue).then(response => {
+      updateDepartment(newValue, oldValue, id).then(response => {
         queryDepartment().then(response => {
           this.tableData = response.result
         })

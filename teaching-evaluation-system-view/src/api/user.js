@@ -35,11 +35,25 @@ export function addMajor(data) {
     data
   })
 }
+export function updateMajor(data) {
+  return request({
+    url: '/major/update',
+    method: 'post',
+    data
+  })
+}
 export function deleteDepartment(departmentName) {
   return request({
     url: '/department/delete',
     method: 'get',
     params: { departmentName }
+  })
+}
+export function deleteMajor(majorId) {
+  return request({
+    url: '/major/delete',
+    method: 'get',
+    params: { majorId }
   })
 }
 export function queryDepartment() {
@@ -48,11 +62,11 @@ export function queryDepartment() {
     method: 'get'
   })
 }
-export function updateDepartment(newDepartmentName, oldDepartmentName) {
+export function updateDepartment(newDepartmentName, oldDepartmentName, id) {
   return request({
     url: '/department/update',
     method: 'get',
-    params: { newDepartmentName, oldDepartmentName }
+    params: { newDepartmentName, oldDepartmentName, id }
   })
 }
 export function logout() {
