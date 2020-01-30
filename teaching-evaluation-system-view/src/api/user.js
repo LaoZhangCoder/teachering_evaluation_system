@@ -28,6 +28,13 @@ export function listMajor() {
     method: 'get'
   })
 }
+export function queryMajorByCondition(departmentId) {
+  return request({
+    url: '/major/list/condition',
+    method: 'get',
+    params: { departmentId }
+  })
+}
 export function addMajor(data) {
   return request({
     url: '/major/add',
@@ -35,9 +42,23 @@ export function addMajor(data) {
     data
   })
 }
+export function addClass(data) {
+  return request({
+    url: '/class/add',
+    method: 'post',
+    data
+  })
+}
 export function updateMajor(data) {
   return request({
     url: '/major/update',
+    method: 'post',
+    data
+  })
+}
+export function updateClass(data) {
+  return request({
+    url: '/class/update',
     method: 'post',
     data
   })
@@ -56,9 +77,22 @@ export function deleteMajor(majorId) {
     params: { majorId }
   })
 }
+export function deleteClass(classId) {
+  return request({
+    url: '/class/delete',
+    method: 'get',
+    params: { classId }
+  })
+}
 export function queryDepartment() {
   return request({
     url: '/department/list',
+    method: 'get'
+  })
+}
+export function listClass() {
+  return request({
+    url: '/class/list',
     method: 'get'
   })
 }

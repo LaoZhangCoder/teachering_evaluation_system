@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ClassModel">
+    <resultMap id="BaseResultMap" type="ClassModel">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="class_name" property="className" jdbcType="VARCHAR"></result>
+        <result column="create_date" property="createDate"  jdbcType="TIMESTAMP"></result>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"></result>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, class_name,create_date, update_date
+    </sql>
+    <sql id="table_name">classes</sql>
+    <sql id="criteria">
+        <where>
+            <if test="className != null"> AND `class_name`=#{className}</if>
+        </where>
+    </sql>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from classes
+        <include refid="criteria"/>
+    </select>
+    <select id="findByUniqueIndex" resultMap="BaseResultMap" parameterType="map">
+        select <include refid="Base_Column_List" />
+        from <include refid="table_name"/>
+        <include refid="criteria"/>
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from <include refid="table_name"/>
+        where id=#{id}
+    </delete>
+    <update id="update" parameterType="ClassModel">
+        update <include refid="table_name"/>
+      <set>
+          <if test="className!=null">
+              class_name=#{className, jdbcType=VARCHAR},
+          </if>
+          <if test="createDate != null">
+              create_date = #{createDate,jdbcType=TIMESTAMP},
+          </if>
+          <if test="updateDate != null">
+              update_date = #{updateDate,jdbcType=TIMESTAMP},
+          </if>
+      </set>
+    </update>
+    <insert id="create">
+        insert into <include refid="table_name"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                id,
+            </if>
+            <if test="className!=null">
+                class_name,
+            </if>
+            <if test=" createDate != null">
+                create_date,
+            </if>
+            <if test=" updateDate != null">
+                update_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="className!=null">
+                #{className,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+</mapper>

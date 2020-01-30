@@ -15,4 +15,6 @@ public interface MajorService {
     Response<String> updateMajorInfo(MajorUpdateRequest request);
 
     Response<String> deleteMajorInfo(Long majorId);
+
+    Response<List<MajorInfo>> listMajorByCondition(Long departmentId);
 }

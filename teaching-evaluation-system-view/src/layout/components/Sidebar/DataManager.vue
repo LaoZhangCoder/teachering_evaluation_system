@@ -48,6 +48,9 @@ export default {
       if (dropNode.label === '专业管理') {
         this.$router.push('/major/index')
       }
+      if (dropNode.label === '班级管理') {
+        this.$router.push('/class/index')
+      }
     }
   }
 }

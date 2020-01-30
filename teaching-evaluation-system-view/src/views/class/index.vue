@@ -8,7 +8,11 @@
       prop="date"
     />
     <el-table-column
-      label="专业名称"
+      label="班级名称"
+      prop="className"
+    />
+    <el-table-column
+      label="所属专业"
       prop="majorName"
     />
     <el-table-column
@@ -42,7 +46,7 @@
 </template>
 
 <script>
-import { listMajor, deleteMajor } from '@/api/user'
+import { listClass, deleteClass } from '@/api/user'
 export default {
   data() {
     return {
@@ -52,20 +56,20 @@ export default {
   },
   created() {
     this.loading = true
-    listMajor().then(response => {
+    listClass().then(response => {
       this.tableData = response.result
     })
   },
   methods: {
     handleEdit(data) {
-      this.$router.push({ path: '/major/update', query: { id: this.tableData[data].majorId, departmentId: this.tableData[data].departmentId }})
+      this.$router.push({ path: '/class/update', query: { classId: this.tableData[data].classId, className: this.tableData[data].className }})
     },
     handleDelete(data) {
-      deleteMajor(this.tableData[data].majorId)
+      deleteClass(this.tableData[data].classId)
       location.reload()
     },
     open() {
-      this.$router.push('/major/add')
+      this.$router.push('/class/add')
     }
   }
 }

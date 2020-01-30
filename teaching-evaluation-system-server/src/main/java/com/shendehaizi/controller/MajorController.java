@@ -25,6 +25,11 @@ public class MajorController {
         return majorService.listMajor();
     }
 
+    @GetMapping(value = "major/list/condition")
+    public Response<List<MajorInfo>> listMajorListByCondition(Long departmentId){
+        return majorService.listMajorByCondition(departmentId);
+    }
+
     @PostMapping(value = "major/update")
     public Response<String> updateMajor(@RequestBody MajorUpdateRequest request){
         return majorService.updateMajorInfo(request);

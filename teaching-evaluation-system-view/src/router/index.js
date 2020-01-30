@@ -99,6 +99,20 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/class',
+
+    // 你可以选择不同的layout组件
+    component: Layout,
+
+    // 这里开始对应的路由都会显示在app-main中 如上图所示
+    children: [{
+      path: 'index',
+      component: () => import('@/views/class/index'),
+      name: '班级管理',
+      meta: { title: '班级管理', icon: 'dashboard', affix: true }
+    }]
+  },
+  {
     path: '/major',
 
     // 你可以选择不同的layout组件
@@ -113,6 +127,20 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/class',
+
+    // 你可以选择不同的layout组件
+    component: Layout,
+
+    // 这里开始对应的路由都会显示在app-main中 如上图所示
+    children: [{
+      path: 'add',
+      component: () => import('@/views/class/add'),
+      name: '添加班级',
+      meta: { title: '添加班级', icon: 'dashboard', affix: true }
+    }]
+  },
+  {
     path: '/major',
 
     // 你可以选择不同的layout组件
@@ -124,6 +152,20 @@ export const constantRoutes = [
       component: () => import('@/views/major/update'),
       name: '修改专业信息',
       meta: { title: '修改专业信息', icon: 'dashboard', affix: true }
+    }]
+  },
+  {
+    path: '/class',
+
+    // 你可以选择不同的layout组件
+    component: Layout,
+
+    // 这里开始对应的路由都会显示在app-main中 如上图所示
+    children: [{
+      path: 'update',
+      component: () => import('@/views/class/update'),
+      name: '修改班级信息',
+      meta: { title: '修改班级信息', icon: 'dashboard', affix: true }
     }]
   },
   {

@@ -19,7 +19,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class DepartmentServiceimpl implements DepartmentService {
+public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     private DeparmentDao deparmentDao;
     @Override

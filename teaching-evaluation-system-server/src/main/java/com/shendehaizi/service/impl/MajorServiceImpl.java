@@ -18,9 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -171,6 +169,35 @@ public class MajorServiceImpl implements MajorService {
         response.setCode(Code.SUCCESS.getStatus());
         response.setResult("删除成功");
         response.setSuccess(delete);
+        return  response;
+    }
+
+    @Override
+    public Response<List<MajorInfo>> listMajorByCondition(Long departmentId) {
+        Response response = new Response();
+        HashMap<String, Object> map = Maps.newHashMap();
+        map.put("departmentId",departmentId);
+        List<MajorDepartmentRelationModel> list = majorDepartmentRelationDao.list(map);
+        if(list.isEmpty()){
+            log.error("添加错误！该院系下没有任何专业，请先在该院系下面创建相关专业");
+            throw new ServiceException("添加错误！该院系下没有任何专业，请先在该院系下面创建相关专业");
+        }
+        List<MajorModel> majorModels = majorDao.listAll();
+        List<MajorInfo> collect=new ArrayList<>();
+        majorModels.stream().forEach(majorModel -> {
+            list.forEach(majorDepartmentRelationModel -> {
+                if (majorDepartmentRelationModel.getMajorId().equals(majorModel.getId())) {
+                    MajorInfo majorInfo = new MajorInfo();
+                    majorInfo.setMajorId(majorModel.getId());
+                    majorInfo.setMajorName(majorModel.getMajorName());
+                    majorInfo.setDate(majorModel.getCreateDate());
+                    collect.add(majorInfo);
+                }
+            });
+        });
+        response.setCode(Code.SUCCESS.getStatus());
+        response.setResult(collect);
+        response.setSuccess(true);
         return  response;
     }
 
