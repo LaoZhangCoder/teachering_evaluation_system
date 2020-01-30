@@ -33,12 +33,14 @@
         <el-button
           size="mini"
           @click="handleEdit(scope.$index)"
-        >Edit</el-button>
+        >Edit
+        </el-button>
         <el-button
           size="mini"
           type="danger"
           @click="handleDelete(scope.$index)"
-        >Delete</el-button>
+        >Delete
+        </el-button>
         <el-button type="success" size="mini" @click="open">add</el-button>
       </template>
     </el-table-column>
@@ -47,6 +49,7 @@
 
 <script>
 import { listClass, deleteClass } from '@/api/user'
+
 export default {
   data() {
     return {
@@ -62,7 +65,14 @@ export default {
   },
   methods: {
     handleEdit(data) {
-      this.$router.push({ path: '/class/update', query: { classId: this.tableData[data].classId, className: this.tableData[data].className }})
+      this.$router.push({ path: '/class/update',
+        query: {
+          classId: this.tableData[data].classId,
+          className: this.tableData[data].className,
+          oldDepartmentId: this.tableData[data].departmentId,
+          oldMajorId: this.tableData[data].majorId
+        }
+      })
     },
     handleDelete(data) {
       deleteClass(this.tableData[data].classId)

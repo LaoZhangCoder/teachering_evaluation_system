@@ -11,12 +11,16 @@ public class ClassUpdateRequest {
     /**
      * 新的班级名
      */
-    private  String name;
+    private  String className;
 
     private Long classId;
 
     private  Long departmentId;
 
     private  Long majorId;
+
+    private  Long oldDepartmentId;
+
+    private  Long oldMajorId;
 
 }

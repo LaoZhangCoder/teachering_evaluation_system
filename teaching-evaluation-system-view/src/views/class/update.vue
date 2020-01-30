@@ -25,10 +25,12 @@ export default {
   data() {
     return {
       form: {
-        name: '',
+        className: '',
         departmentId: '',
         classId: '',
         majorId: '',
+        oldDepartmentId: '',
+        oldMajorId: '',
         oldName: ''
       },
       departmentList: [],
@@ -49,6 +51,8 @@ export default {
     onSubmit() {
       this.form.classId = this.$route.query.classId
       this.form.oldName = this.$route.query.className
+      this.form.oldDepartmentId = this.$route.query.oldDepartmentId
+      this.form.oldMajorId = this.$route.query.oldMajorId
       updateClass(this.form).then(response => {
         if (response.success === true) {
           this.$router.push('/class/index')

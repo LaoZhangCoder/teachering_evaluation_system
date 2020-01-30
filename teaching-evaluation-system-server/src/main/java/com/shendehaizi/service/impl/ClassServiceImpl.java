@@ -66,17 +66,19 @@ public class ClassServiceImpl implements ClassService {
                 map.clear();
                 map.put("id",classMajorDepartmentRelationModel.getDepartmentId());
                 DepartmentModel departmentModel = deparmentDao.findByUniqueIndex(map);
-                map.clear();
-                map.put("id",classMajorDepartmentRelationModel.getMajorId());
-                MajorModel majorModel = majorDao.findByUniqueIndex(map);
-                classInfo.setClassId(classMajorDepartmentRelationModel.getClassId());
-                classInfo.setClassName(classModel.getClassName());
-                classInfo.setDate(classModel.getCreateDate());
-                classInfo.setDepartmentId(departmentModel.getId());
-                classInfo.setDepartmentName(departmentModel.getDepartmentName());
-                classInfo.setMajorId(majorModel.getId());
-                classInfo.setMajorName(majorModel.getMajorName());
-                classInfos.add(classInfo);
+                if(departmentModel!=null) {
+                    map.clear();
+                    map.put("id", classMajorDepartmentRelationModel.getMajorId());
+                    MajorModel majorModel = majorDao.findByUniqueIndex(map);
+                    classInfo.setClassId(classMajorDepartmentRelationModel.getClassId());
+                    classInfo.setClassName(classModel.getClassName());
+                    classInfo.setDate(classModel.getCreateDate());
+                    classInfo.setDepartmentId(departmentModel.getId());
+                    classInfo.setDepartmentName(departmentModel.getDepartmentName());
+                    classInfo.setMajorId(majorModel.getId());
+                    classInfo.setMajorName(majorModel.getMajorName());
+                    classInfos.add(classInfo);
+                }
             }
         });
         listResponse.setCode(Code.SUCCESS.getStatus());
@@ -101,7 +103,42 @@ public class ClassServiceImpl implements ClassService {
 
     @Override
     public Response<String> updateClassInfo(ClassUpdateRequest request) {
-        return null;
+        Response<String> response = new Response<>();
+        HashMap<String, Object> map = Maps.newHashMap();
+        map.put("className",request.getClassName());
+        ClassModel classModel = classDao.findByUniqueIndex(map);
+        if(classModel!=null&&!classModel.getId().equals(request.getClassId().intValue())){
+            log.error("存在相同名称的班级名");
+            throw new ServiceException("存在相同名称的班级名");
+        }
+        ClassModel t=new ClassModel();
+        t.setUpdateDate(new Date());
+        t.setId(request.getClassId().intValue());
+        t.setClassName(request.getClassName());
+        Boolean update = classDao.update(t);
+        if(update){
+            //更新关系表
+            map.clear();
+            map.put("classId",request.getClassId());
+            map.put("departmentId",request.getOldDepartmentId());
+            map.put("majorId",request.getOldMajorId());
+            ClassMajorDepartmentRelationModel byUniqueIndex = classMajorDepartmentRelationDao.findByUniqueIndex(map);
+            ClassMajorDepartmentRelationModel classRel=new ClassMajorDepartmentRelationModel();
+            Boolean delete = classMajorDepartmentRelationDao.delete(byUniqueIndex.getId().longValue());
+            if(delete){
+                classRel.setUpdateDate(new Date());
+                classRel.setMajorId(request.getMajorId().intValue());
+                classRel.setDepartmentId(request.getDepartmentId().intValue());
+                classRel.setClassId(request.getClassId().intValue());
+                classRel.setCreateDate(byUniqueIndex.getCreateDate());
+                classMajorDepartmentRelationDao.create(classRel);
+              response.setResult("修改成功!");
+              response.setCode(Code.SUCCESS.getStatus());
+              return  response;
+            }
+        }
+        response.setError("添加失败!");
+        return  response;
     }
 
     private Response<String> isSuccessAddClass(ClassAddeRquest request, Response<String> response) {

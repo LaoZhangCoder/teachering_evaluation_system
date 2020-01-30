@@ -44,6 +44,7 @@
               update_date = #{updateDate,jdbcType=TIMESTAMP},
           </if>
       </set>
+        where id = #{id,jdbcType=BIGINT}
     </update>
     <insert id="create">
         insert into <include refid="table_name"/>
