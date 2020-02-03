@@ -51,6 +51,9 @@ export default {
       if (dropNode.label === '班级管理') {
         this.$router.push('/class/index')
       }
+      if (dropNode.label === '用户管理') {
+        this.$router.push('/user/index')
+      }
     }
   }
 }

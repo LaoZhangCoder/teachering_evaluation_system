@@ -39,6 +39,7 @@ public class Response<T> implements Serializable {
 
     public void setResult(T result) {
         this.success = true;
+        this.code=200;
         this.result = result;
     }
     public void setError(String error) {
