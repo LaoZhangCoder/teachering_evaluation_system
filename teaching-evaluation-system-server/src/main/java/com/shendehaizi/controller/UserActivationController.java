@@ -1,13 +1,13 @@
 package com.shendehaizi.controller;
 
 import com.shendehaizi.request.UserActivationRequest;
+import com.shendehaizi.response.ActivationUserInfo;
 import com.shendehaizi.response.Response;
 import com.shendehaizi.service.UserActivationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/")
@@ -19,4 +19,12 @@ public class UserActivationController {
     public Response<String> addUserActivation(@RequestBody UserActivationRequest request){
          return userActivationService.addUserActivation(request);
      }
+    @GetMapping(value = "user/list")
+    public Response<List<ActivationUserInfo>> getActivationUserInfo(){
+        return userActivationService.getActivationUserInfo();
+    }
+    @GetMapping(value = "user/page")
+    public Response<List<ActivationUserInfo>> getPagingActivationUserInfo(Integer currentPage){
+        return userActivationService.getPagingActivationUserInfo(currentPage,8);
+    }
 }

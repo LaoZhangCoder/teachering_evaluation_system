@@ -8,6 +8,15 @@ public class Response<T> implements Serializable {
     private T result;
     private int code;
     private String error;
+    private Long count;
+
+    public Long getCount() {
+        return count;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

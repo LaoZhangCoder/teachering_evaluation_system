@@ -16,7 +16,7 @@
     <sql id="criteria">
         <where>
             <if test="id != null">AND `id` = #{id}</if>
-            <if test="user_id != null">AND `user_id` = #{user_id}</if>
+            <if test="userId != null">AND `user_id` = #{userId}</if>
         </where>
     </sql>
     <select id="findByUniqueIndex" resultMap="BaseResultMap" parameterType="map">
@@ -24,6 +24,21 @@
         <include refid="Base_Column_List"/>
         from <include refid="table_name" />
         <include refid="criteria" />
+    </select>
+    <select id="paging" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from <include refid="table_name" />
+        LIMIT #{offset}, #{limit}
+    </select>
+    <select id="count" resultType="long">
+        select count(*) from <include refid="table_name"/>
+    </select>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="table_name"/>
     </select>
     <insert id="create" parameterType="UserActivationModel">
    insert  into <include refid="table_name" />

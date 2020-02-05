@@ -9,11 +9,17 @@ export function getRoutes() {
 
 export function getRoles() {
   return request({
-    url: '/roles',
+    url: '/user/list',
     method: 'get'
   })
 }
-
+export function getPageRoles(currentPage) {
+  return request({
+    url: '/user/page',
+    method: 'get',
+    params: { currentPage }
+  })
+}
 export function addRole(data) {
   return request({
     url: '/user/activation',

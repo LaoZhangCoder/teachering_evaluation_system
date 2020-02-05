@@ -5,17 +5,17 @@
     <el-table :data="rolesList" style="width: 100%;margin-top:30px;" border>
       <el-table-column align="center" label="用户编号" width="220">
         <template slot-scope="scope">
-          {{ scope.row.key }}
+          {{ scope.row.userId }}
         </template>
       </el-table-column>
       <el-table-column align="center" label="用户角色" width="220">
         <template slot-scope="scope">
-          {{ scope.row.name }}
+          {{ scope.row.roleName }}
         </template>
       </el-table-column>
       <el-table-column align="header-center" label="是否注册">
         <template slot-scope="scope">
-          {{ scope.row.description }}
+          {{ scope.row.register }}
         </template>
       </el-table-column>
       <el-table-column align="center" label="Operations">
@@ -24,8 +24,16 @@
           <el-button type="danger" size="small" @click="handleDelete(scope)">Delete</el-button>
         </template>
       </el-table-column>
-    </el-table>
 
+    </el-table>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      style="margin-left: 30%;margin-top: 2%"
+      :total="count"
+      :page-size="8"
+      @current-change="handleCurrentChange"
+    />
     <el-dialog :visible.sync="dialogVisible" :title="dialogType==='edit'?'Edit Role':'New Role'">
       <el-form :model="role" label-width="80px" label-position="left">
         <el-form-item label="用户编号">
@@ -35,12 +43,12 @@
           <el-select v-model="role.roleId" placeholder="请选择身份">
             <el-option
               label="学生"
-              value="1">
-            </el-option>
+              value="1"
+            />
             <el-option
               label="老师"
-              value="2">
-            </el-option>
+              value="2"
+            />
           </el-select>
         </el-form-item>
       </el-form>
@@ -55,7 +63,7 @@
 <script>
 import path from 'path'
 import { deepClone } from '@/utils'
-import { getRoutes, getRoles, addRole, deleteRole, updateRole } from '@/api/role'
+import { getRoutes, getRoles, addRole, deleteRole, updateRole, getPageRoles } from '@/api/role'
 
 const defaultRole = {
   userId: '',
@@ -68,6 +76,7 @@ export default {
       role: Object.assign({}, defaultRole),
       routes: [],
       rolesList: [],
+      count: null,
       dialogVisible: false,
       dialogType: 'new',
       checkStrictly: false,
@@ -83,19 +92,18 @@ export default {
     }
   },
   created() {
-    // Mock: get all routes and roles list from server
-    this.getRoutes()
+    // Mock: get all routes and roles list from serve
     this.getRoles()
   },
   methods: {
     async getRoutes() {
       const res = await getRoutes()
-      this.serviceRoutes = res.data
       this.routes = this.generateRoutes(res.data)
     },
     async getRoles() {
       const res = await getRoles()
-      this.rolesList = res.data
+      this.rolesList = res.result
+      this.count = res.count
     },
 
     // Reshape the routes structure so that it looks the same as the sidebar
@@ -138,6 +146,11 @@ export default {
         }
       })
       return data
+    },
+    async handleCurrentChange(currentPage) {
+      const res = await getPageRoles(currentPage)
+      this.rolesList = res.result
+      this.count = res.count
     },
     handleAddRole() {
       this.role = Object.assign({}, defaultRole)
@@ -203,20 +216,16 @@ export default {
           }
         }
       } else {
-        const { data } = await addRole(this.role)
-        this.role.key = data.key
-        this.rolesList.push(this.role)
+        await addRole(this.role)
+        this.$router.push('/user/permission/index')
       }
 
-      const { description, key, name } = this.role
       this.dialogVisible = false
       this.$notify({
         title: 'Success',
         dangerouslyUseHTMLString: true,
         message: `
-            <div>Role Key: ${key}</div>
-            <div>Role Name: ${name}</div>
-            <div>Description: ${description}</div>
+            <div>添加成功!</div>
           `,
         type: 'success'
       })
