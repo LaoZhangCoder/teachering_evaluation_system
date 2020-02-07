@@ -7,7 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.Map;
 @Repository
 public class AdminDao extends MyBatisDao<AdminModel> {
-    public AdminModel getadminInfo(Map param){
-        return this.findByUniqueIndex(param);
-    }
+
 }

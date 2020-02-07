@@ -183,6 +183,20 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/admin/permission',
+
+    // 你可以选择不同的layout组件
+    component: Layout,
+
+    // 这里开始对应的路由都会显示在app-main中 如上图所示
+    children: [{
+      path: 'index',
+      component: () => import('@/views/admin/permission/index'),
+      name: '添加管理员',
+      meta: { title: '添加管理员', icon: 'dashboard', affix: true }
+    }]
+  },
+  {
     path: '/user/permission',
 
     // 你可以选择不同的layout组件

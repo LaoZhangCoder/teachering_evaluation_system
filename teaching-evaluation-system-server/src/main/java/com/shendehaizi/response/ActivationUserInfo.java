@@ -18,4 +18,6 @@ public class ActivationUserInfo {
      * 是否注册
      */
     private String register;
+
+    private  Long id;
 }

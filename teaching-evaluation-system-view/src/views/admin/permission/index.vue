@@ -1,21 +1,16 @@
 <template>
   <div class="app-container">
-    <el-button type="primary" @click="handleAddRole">添加用户</el-button>
+    <el-button type="primary" @click="handleAddRole">添加管理员</el-button>
 
     <el-table :data="rolesList" style="width: 100%;margin-top:30px;" border>
-      <el-table-column align="center" label="用户编号" width="220">
+      <el-table-column align="center" label="管理员编号" width="220">
         <template slot-scope="scope">
-          {{ scope.row.userId }}
+          {{ scope.row.adminId }}
         </template>
       </el-table-column>
-      <el-table-column align="center" label="用户角色" width="220">
+      <el-table-column align="center" label="管理员名称" width="220">
         <template slot-scope="scope">
-          {{ scope.row.roleName }}
-        </template>
-      </el-table-column>
-      <el-table-column align="header-center" label="是否注册">
-        <template slot-scope="scope">
-          {{ scope.row.register }}
+          {{ scope.row.adminName }}
         </template>
       </el-table-column>
       <el-table-column align="center" label="Operations">
@@ -34,22 +29,13 @@
       :page-size="8"
       @current-change="handleCurrentChange"
     />
-    <el-dialog :visible.sync="dialogVisible" :title="dialogType==='edit'?'Edit User':'New User'">
+    <el-dialog :visible.sync="dialogVisible" :title="dialogType==='edit'?'Edit Admin':'New Admin'">
       <el-form :model="role" label-width="80px" label-position="left">
-        <el-form-item label="用户编号">
-          <el-input v-model="role.userId" placeholder="用户编号" />
+        <el-form-item label="管理员名称">
+          <el-input v-model="role.adminName" placeholder="管理员名称" />
         </el-form-item>
-        <el-form-item label="用户角色">
-          <el-select v-model="role.roleId" placeholder="请选择身份">
-            <el-option
-              label="学生"
-              value="1"
-            />
-            <el-option
-              label="老师"
-              value="2"
-            />
-          </el-select>
+        <el-form-item label="管理员密码">
+          <el-input v-model="role.adminPassword" placeholder="管理员密码" />
         </el-form-item>
       </el-form>
       <div style="text-align:right;">
@@ -63,11 +49,12 @@
 <script>
 import path from 'path'
 import { deepClone } from '@/utils'
-import { getRoutes, getRoles, addRole, deleteRole, updateRole, getPageRoles } from '@/api/role'
+import { getRoutes, getAdmins, addAdmin, deleteAdmin, updateAdmin, getPageAdmins } from '@/api/role'
 
 const defaultRole = {
-  userId: '',
-  roleId: ''
+  adminId: '',
+  adminPassword: '',
+  adminName: ''
 }
 
 export default {
@@ -76,7 +63,7 @@ export default {
       role: Object.assign({}, defaultRole),
       routes: [],
       rolesList: [],
-      oldUserId: '',
+      oldAdminId: '',
       count: null,
       dialogVisible: false,
       dialogType: 'new',
@@ -94,15 +81,15 @@ export default {
   },
   created() {
     // Mock: get all routes and roles list from serve
-    this.getRoles()
+    this.getAdmins()
   },
   methods: {
     async getRoutes() {
       const res = await getRoutes()
       this.routes = this.generateRoutes(res.data)
     },
-    async getRoles() {
-      const res = await getRoles()
+    async getAdmins() {
+      const res = await getAdmins()
       this.rolesList = res.result
       this.count = res.count
     },
@@ -149,7 +136,7 @@ export default {
       return data
     },
     async handleCurrentChange(currentPage) {
-      const res = await getPageRoles(currentPage)
+      const res = await getPageAdmins(currentPage)
       this.rolesList = res.result
       this.count = res.count
     },
@@ -163,7 +150,7 @@ export default {
     },
     handleEdit(scope) {
       this.dialogType = 'edit'
-      this.oldUserId = this.rolesList[scope.$index].userId
+      this.oldAdminId = this.rolesList[scope.$index].adminName
       this.dialogVisible = true
       this.checkStrictly = true
       this.role = deepClone(scope.row)
@@ -181,7 +168,7 @@ export default {
         type: 'warning'
       })
         .then(async() => {
-          await deleteRole(this.rolesList[$index].userId)
+          await deleteAdmin(this.rolesList[$index].adminId)
           this.rolesList.splice($index, 1)
           this.$message({
             type: 'success',
@@ -210,7 +197,7 @@ export default {
     async confirmRole() {
       const isEdit = this.dialogType === 'edit'
       if (isEdit) {
-        await updateRole(this.oldUserId, this.role)
+        await updateAdmin(this.oldAdminId, this.role)
         for (let index = 0; index < this.rolesList.length; index++) {
           if (this.rolesList[index].key === this.role.key) {
             this.rolesList.splice(index, 1, Object.assign({}, this.role))
@@ -218,8 +205,8 @@ export default {
           }
         }
       } else {
-        await addRole(this.role)
-        this.$router.push('/user/permission/index')
+        await addAdmin(this.role)
+        this.$router.push('/admin/permission/index')
       }
 
       this.dialogVisible = false
