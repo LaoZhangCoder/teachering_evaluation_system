@@ -1,11 +1,14 @@
 package com.shendehaizi.controller;
 
 import com.shendehaizi.enums.Code;
+import com.shendehaizi.request.UserRegisterRequest;
 import com.shendehaizi.response.Response;
 import com.shendehaizi.response.UserInfo;
 import com.shendehaizi.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,5 +27,10 @@ public class UserInfoController {
         userInfoResponse.setCode(Code.SUCCESS.getStatus());
         userInfoResponse.setResult(userInfo);
         return  userInfoResponse;
+    }
+
+    @PostMapping(value = "/user/register")
+    public Response<String>  userRegister(@RequestBody UserRegisterRequest request){
+        return userInfoService.handleStudentRegister(request);
     }
 }

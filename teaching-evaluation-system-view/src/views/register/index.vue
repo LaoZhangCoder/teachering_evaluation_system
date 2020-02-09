@@ -5,7 +5,7 @@
       <div class="title-container">
         <h3 class="title">评教系统注册</h3>
       </div>
-      <el-select v-model="value" placeholder="学生" @change="roleHandle()">
+      <el-select v-model="registerForm.roleId" placeholder="学生" @change="roleHandle()">
         <el-option
           v-for="item in roles"
           :key="item.value"
@@ -19,23 +19,23 @@
         </span>
         <el-input
           ref="username"
-          v-model="registerForm.username"
-          placeholder="Username"
+          v-model="registerForm.userName"
+          placeholder="用户名"
           name="username"
           type="text"
           tabindex="1"
           autocomplete="on"
         />
       </el-form-item>
-      <el-form-item prop="userid">
+      <el-form-item prop="userId">
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
         <el-input
-          ref="userid"
-          v-model="registerForm.userid"
+          ref="userId"
+          v-model="registerForm.userId"
           placeholder="学生号或者教师号"
-          name="userid"
+          name="userId"
           type="text"
           tabindex="1"
           autocomplete="on"
@@ -57,76 +57,36 @@
             autocomplete="on"
             @keyup.native="checkCapslock"
             @blur="capsTooltip = false"
-            @keyup.enter.native="handleregister"
           />
           <span class="show-pwd" @click="showPwd">
             <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
           </span>
         </el-form-item>
       </el-tooltip>
-      <el-select v-show="type" ref="student" v-model="value3" placeholder="所在院系">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
+      <el-select v-show="type" ref="student" v-model="registerForm.departmentId" placeholder="所在院系" @change="departmentChange(registerForm.departmentId)">
+        <el-option v-for="department in options" :label="department.name" :value="department.id" />
       </el-select>
-      <el-select v-show="type" ref="student" v-model="value2" placeholder="所在专业">
-        <el-option
-          v-for="item in specialities "
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
+      <el-select v-show="type" ref="student" v-model="registerForm.majorId" placeholder="所在专业" @change="majorChange(registerForm.majorId)">
+        <el-option v-for="major in majorList" :label="major.majorName" :value="major.majorId" />
       </el-select>
-      <el-select v-show="type" ref="student" v-model="value1" placeholder="所在班级">
-        <el-option
-          v-for="item in classes "
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
+      <el-select v-show="type" ref="student" v-model="registerForm.classId" placeholder="所在班级">
+        <el-option v-for="major in classes" :label="major.className" :value="major.classId" />
       </el-select>
-      <el-select v-show="teacher_type" ref="teacher" v-model="teacher_value1" placeholder="所在院系" multiple>
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-      <el-select v-show="teacher_type" ref="teacher" v-model="teacher_value2" placeholder="所在专业" multiple>
-        <el-option
-          v-for="item in specialities "
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-      <el-select v-show="teacher_type" ref="teacher" v-model="teacher_value3" placeholder="所在班级" multiple>
-        <el-option
-          v-for="item in classes "
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleregister">register</el-button>
+      <el-button type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleRegister">register</el-button>
 
       <div style="position:relative">
         <div class="tips">
-          <span></span>
-          <span></span>
+          <span />
+          <span />
         </div>
         <div class="tips">
-          <span style="margin-right:18px;"></span>
-          <span></span>
+          <span style="margin-right:18px;" />
+          <span />
         </div>
         <router-link :to="{ path: '/login'}">
-        <el-button class="thirdparty-button" type="primary" @click="a">
-          ->返回登入
-        </el-button>
+          <el-button class="third-party-button" type="primary" @click="a">
+            ->返回登入
+          </el-button>
         </router-link>
       </div>
     </el-form>
@@ -142,6 +102,7 @@
 </template>
 
 <script>
+import { queryDepartment, queryClassesByCondition, registerUser, queryMajorByCondition } from '@/api/user'
 import { validUsername } from '@/utils/validate'
 export default {
   name: 'Register',
@@ -162,11 +123,16 @@ export default {
     }
     return {
       registerForm: {
-        username: '',
-        password: ''
+        roleId: '1',
+        userName: '',
+        userId: '',
+        password: '',
+        classId: '',
+        majorId: '',
+        departmentId: ''
       },
       registerRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        userName: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       passwordType: 'password',
@@ -177,61 +143,12 @@ export default {
       showDialog: false,
       redirect: undefined,
       otherQuery: {},
-      options: [{
-        value: '选项1',
-        label: '计算机信息学院'
-      }, {
-        value: '选项2',
-        label: '英语学院'
-      }, {
-        value: '选项3',
-        label: '航空学院'
-      }, {
-        value: '选项4',
-        label: '护理学院'
-      }, {
-        value: '选项5',
-        label: '汇集学院'
-      }],
-      value: '1',
-      value1: '',
-      value2: '',
-      value3: '',
+      options: [],
+      majorList: [],
       teacher_value1: '',
       teacher_value2: '',
       teacher_value3: '',
-      classes: [{
-        value: '选项11',
-        label: '(1)班'
-      }, {
-        value: '选项22',
-        label: '(2)班'
-      }, {
-        value: '选项33',
-        label: '(3)班'
-      }, {
-        value: '选项44',
-        label: '(4)班'
-      }, {
-        value: '选项55',
-        label: '(5)班'
-      }],
-      specialities: [{
-        value: '选项111',
-        label: '软件工程'
-      }, {
-        value: '选项222',
-        label: '网络工程'
-      }, {
-        value: '选项333',
-        label: '电商网络'
-      }, {
-        value: '选项444',
-        label: '计科'
-      }, {
-        value: '选项5555',
-        label: '硬件'
-      }],
+      classes: [],
       roles: [{
         value: '1',
         label: '学生'
@@ -254,10 +171,13 @@ export default {
     }
   },
   created() {
-    // window.addEventListener('storage', this.afterQRScan)
+    this.loading = true
+    queryDepartment().then(response => {
+      this.options = response.result
+    })
   },
   mounted() {
-    if (this.registerForm.username === '') {
+    if (this.registerForm.userName === '') {
       this.$refs.username.focus()
     } else if (this.registerForm.password === '') {
       this.$refs.password.focus()
@@ -289,18 +209,27 @@ export default {
         this.$refs.password.focus()
       })
     },
-    handleregister() {
+    departmentChange(departmentId) {
+      this.majorList = null
+      queryMajorByCondition(departmentId).then(response => {
+        this.majorList = response.result
+      })
+    },
+    majorChange(majorId) {
+      this.classes = null
+      queryClassesByCondition(majorId).then(response => {
+        this.classes = response.result
+      })
+    },
+    handleRegister() {
       this.$refs.registerForm.validate(valid => {
         if (valid) {
-          this.loading = true
-          this.$store.dispatch('user/register', this.registerForm)
-            .then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
-              this.loading = false
-            })
-            .catch(() => {
-              this.loading = false
-            })
+          registerUser(this.registerForm).then(response => {
+            if (response.success === true) {
+              alert('注册成功！请登录')
+              this.$router.push('/login')
+            }
+          })
         } else {
           console.log('error submit!!')
           return false
@@ -308,12 +237,10 @@ export default {
       })
     },
     roleHandle() {
-      if (this.value === '1') {
+      if (this.registerForm.roleId === '1') {
         this.type = true
-        this.teacher_type = false
       } else {
         this.type = false
-        this.teacher_type = true
       }
     },
     getOtherQuery(query) {

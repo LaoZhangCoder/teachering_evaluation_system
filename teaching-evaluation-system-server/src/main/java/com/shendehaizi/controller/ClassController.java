@@ -3,6 +3,7 @@ package com.shendehaizi.controller;
 import com.shendehaizi.request.ClassAddeRquest;
 import com.shendehaizi.request.ClassUpdateRequest;
 import com.shendehaizi.response.ClassInfo;
+import com.shendehaizi.response.ClassesInfo;
 import com.shendehaizi.response.Response;
 import com.shendehaizi.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,10 @@ public class ClassController {
     @PostMapping(value = "class/update")
     public Response<String> updateMajor(@RequestBody ClassUpdateRequest request){
         return classService.updateClassInfo(request);
+    }
+
+    @GetMapping(value = "/class/list/condition")
+    public   Response<List<ClassesInfo>> listClassInfoByCondition(Long majorId){
+        return classService.listClassByMajorId(majorId);
     }
 }

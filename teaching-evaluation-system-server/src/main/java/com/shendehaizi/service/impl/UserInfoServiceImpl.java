@@ -4,15 +4,24 @@ import com.google.common.collect.Maps;
 import com.shendehaizi.Exception.ServiceException;
 import com.shendehaizi.dao.AdminDao;
 import com.shendehaizi.dao.RoleDao;
+import com.shendehaizi.dao.StudentDao;
+import com.shendehaizi.dao.UserActivationDao;
 import com.shendehaizi.model.AdminModel;
 import com.shendehaizi.model.RoleModel;
+import com.shendehaizi.model.StudentModel;
+import com.shendehaizi.model.UserActivationModel;
+import com.shendehaizi.request.UserRegisterRequest;
+import com.shendehaizi.response.Response;
 import com.shendehaizi.response.UserInfo;
 import com.shendehaizi.service.UserInfoService;
 import com.shendehaizi.util.MD5Util;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -22,6 +31,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     private AdminDao adminDao;
     @Autowired
     private RoleDao roleDao;
+    @Autowired
+    private UserActivationDao userActivationDao;
+
+    @Autowired
+    private StudentDao studentDao;
+
     @Override
     public UserInfo getUserInfo(String token) {
         UserInfo userInfo = new UserInfo();
@@ -47,5 +62,35 @@ public class UserInfoServiceImpl implements UserInfoService {
             return userInfo;
         }
         return null;
+    }
+
+    @Override
+    public Response<String> handleStudentRegister(UserRegisterRequest request) {
+        Response<String> response = new Response<>();
+        String userId = request.getUserId();
+        HashMap<String, Object> map = Maps.newHashMap();
+        map.put("userId",userId);
+        UserActivationModel activationModel = userActivationDao.findByUniqueIndex(map);
+        if(activationModel==null){
+            log.error("该用户未被激活!请联系管理员");
+            throw  new ServiceException("该用户未被激活!请联系管理员");
+        }
+        if(activationModel.getStatus().equals(1)){
+            throw  new ServiceException("该用户已被注册");
+        }
+        StudentModel studentModel = new StudentModel();
+        BeanUtils.copyProperties(request,studentModel);
+        studentModel.setStudentName(request.getUserName());
+        studentModel.setUpdateDate(new Date());
+        studentModel.setCreateDate(new Date());
+        Boolean aBoolean = studentDao.create(studentModel);
+        if(aBoolean){
+            activationModel.setStatus(1);
+            userActivationDao.update(activationModel);
+            response.setResult("注册成功");
+        }else{
+            response.setError("注册失败");
+        }
+        return  response;
     }
 }

@@ -14,6 +14,7 @@ import com.shendehaizi.model.MajorModel;
 import com.shendehaizi.request.ClassAddeRquest;
 import com.shendehaizi.request.ClassUpdateRequest;
 import com.shendehaizi.response.ClassInfo;
+import com.shendehaizi.response.ClassesInfo;
 import com.shendehaizi.response.Response;
 import com.shendehaizi.service.ClassService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -139,6 +141,31 @@ public class ClassServiceImpl implements ClassService {
         }
         response.setError("添加失败!");
         return  response;
+    }
+
+    @Override
+    public Response<List<ClassesInfo>> listClassByMajorId(Long majorId) {
+        HashMap<String, Object> map = Maps.newHashMap();
+        Response<List<ClassesInfo>> listResponse = new Response<>();
+        map.put("majorId",majorId);
+        List<ClassMajorDepartmentRelationModel> list = classMajorDepartmentRelationDao.list(map);
+        List<Integer> classIds = list.stream().map(ClassMajorDepartmentRelationModel::getClassId).collect(Collectors.toList());
+        map.clear();
+        map.put("list",classIds);
+        if(classIds.isEmpty()){
+            listResponse.setResult(null);
+            return  listResponse;
+        }
+        List<ClassModel> classModels = classDao.list(map);
+        List<ClassesInfo> collect = classModels.stream().map(classModel -> {
+            ClassesInfo classesInfo = new ClassesInfo();
+            classesInfo.setClassId(classModel.getId());
+            classesInfo.setClassName(classModel.getClassName());
+            classesInfo.setDate(classModel.getCreateDate());
+            return classesInfo;
+        }).collect(Collectors.toList());
+        listResponse.setResult(collect);
+        return listResponse;
     }
 
     private Response<String> isSuccessAddClass(ClassAddeRquest request, Response<String> response) {

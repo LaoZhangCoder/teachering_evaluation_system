@@ -6,7 +6,13 @@ export function login(data) {
     data
   })
 }
-
+export function registerUser(data) {
+  return request({
+    url: '/user/register',
+    method: 'post',
+    data
+  })
+}
 export function getInfo(token) {
   return request({
     url: '/user/info',
@@ -33,6 +39,13 @@ export function queryMajorByCondition(departmentId) {
     url: '/major/list/condition',
     method: 'get',
     params: { departmentId }
+  })
+}
+export function queryClassesByCondition(majorId) {
+  return request({
+    url: '/class/list/condition',
+    method: 'get',
+    params: { majorId }
   })
 }
 export function addMajor(data) {

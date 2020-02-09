@@ -14,6 +14,11 @@
     <sql id="criteria">
         <where>
             <if test="className != null"> AND `class_name`=#{className}</if>
+            <if test="list != null and list.size>0">AND id  in
+                <foreach collection="list" open="(" separator="," close=")" item="id">
+                    #{id}
+                </foreach>
+            </if>
         </where>
     </sql>
     <select id="list" resultMap="BaseResultMap">
