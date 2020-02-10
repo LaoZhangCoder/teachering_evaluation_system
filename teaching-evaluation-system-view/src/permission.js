@@ -8,7 +8,7 @@ import getPageTitle from '@/utils/get-page-title'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login', '/auth-redirect','/register'] // no redirect whitelist
+const whiteList = ['/login', '/auth-redirect', '/register'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
@@ -21,9 +21,23 @@ router.beforeEach(async(to, from, next) => {
   const hasToken = getToken()
 
   if (hasToken) {
-    if (to.path === '/login') {
+    if (to.path === '/dashboard') {
       // if is logged in, redirect to the home page
-      next({ path: '/' })
+      if (store.state.user.name === '3') {
+        next({ path: '/' })
+      }
+      if (store.state.user.name === '1') {
+        next({ path: '/student/index' })
+      }
+      NProgress.done()
+    } else if (to.path === '/login') {
+      // if is logged in, redirect to the home page
+      if (store.state.user.name === '3') {
+        next({ path: '/' })
+      }
+      if (store.state.user.name === '1') {
+        next({ path: '/student/index' })
+      }
       NProgress.done()
     } else {
       const hasGetUserInfo = store.getters.name

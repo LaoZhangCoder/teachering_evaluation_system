@@ -20,6 +20,13 @@ export function getInfo(token) {
     params: { token }
   })
 }
+export function getStudentInfoDetail(userId) {
+  return request({
+    url: '/student/detail',
+    method: 'get',
+    params: { userId }
+  })
+}
 
 export function addDepartment(departmentName) {
   return request({

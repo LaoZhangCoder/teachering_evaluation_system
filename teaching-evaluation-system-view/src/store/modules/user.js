@@ -34,8 +34,9 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password, userId: userId, roleId: roleId }).then(response => {
         const data = response
-        commit('SET_TOKEN', data.result)
-        setToken(data.result)
+        commit('SET_TOKEN', data.result.token)
+        setToken(data.result.token)
+        commit('SET_NAME', data.result.roleId)
         resolve()
       }).catch(error => {
         reject(error)
@@ -62,7 +63,6 @@ const actions = {
   },
 
   addDeparment({ commit, state }) {
-    alert(3)
     return new Promise((resolve, reject) => {
       addDeparment(state.name).then(response => {
         const data = response

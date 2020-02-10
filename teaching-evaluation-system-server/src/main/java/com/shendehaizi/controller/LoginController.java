@@ -1,6 +1,7 @@
 package com.shendehaizi.controller;
 
 import com.shendehaizi.request.LoginRequest;
+import com.shendehaizi.response.LoginUserInfo;
 import com.shendehaizi.response.Response;
 import com.shendehaizi.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping(value = "user/login")
-    public Response handleLogin(@RequestBody LoginRequest request) {
-        Response<String> response = loginService.loginCheck(request);
+    public Response<LoginUserInfo> handleLogin(@RequestBody LoginRequest request) {
+        Response<LoginUserInfo> response = loginService.loginCheck(request);
         return response;
     }
 

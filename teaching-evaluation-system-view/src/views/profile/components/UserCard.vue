@@ -8,7 +8,7 @@
       <div class="box-center">
         <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false">
           <div>Hello</div>
-          {{ user.role }}
+          {{ user.name }}
         </pan-thumb>
       </div>
       <div class="box-center">
@@ -22,29 +22,25 @@
         <div class="user-bio-section-header"><svg-icon icon-class="education" /><span>Education</span></div>
         <div class="user-bio-section-body">
           <div class="text-muted">
-            JS in Computer Science from the University of Technology
+            Nanchang Institute of technology is located in Nanchang County, Jiangxi Province
           </div>
         </div>
       </div>
 
       <div class="user-skills user-bio-section">
-        <div class="user-bio-section-header"><svg-icon icon-class="skill" /><span>Skills</span></div>
+        <div class="user-bio-section-header"><svg-icon icon-class="skill" /><span>具体信息</span></div>
         <div class="user-bio-section-body">
           <div class="progress-item">
-            <span>Vue</span>
-            <el-progress :percentage="70" />
+            <span>所属学院:</span>
+            {{this.userInfo.departmentName}}
           </div>
           <div class="progress-item">
-            <span>JavaScript</span>
-            <el-progress :percentage="18" />
+            <span>所属专业:</span>
+            {{this.userInfo.majorName}}
           </div>
           <div class="progress-item">
-            <span>Css</span>
-            <el-progress :percentage="12" />
-          </div>
-          <div class="progress-item">
-            <span>ESLint</span>
-            <el-progress :percentage="100" status="success" />
+            <span>所属班级:</span>
+            {{this.userInfo.className}}
           </div>
         </div>
       </div>
@@ -54,7 +50,8 @@
 
 <script>
 import PanThumb from '@/components/PanThumb'
-
+import store from '@/store'
+import { getInfo,getStudentInfoDetail } from '@/api/user'
 export default {
   components: { PanThumb },
   props: {
@@ -64,11 +61,28 @@ export default {
         return {
           name: '',
           email: '',
-          avatar: '',
+          avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
           roles: ''
         }
       }
     }
+  },
+  data() {
+    return {
+      userInfo: {
+        departmentName: '',
+        majorName: '',
+        className: ''
+      }
+    }
+  },
+  created() {
+    getInfo(store.getters.token).then(response => {
+      this.user.name = response.result.userName
+      getStudentInfoDetail(response.result.userId).then(response => {
+        this.userInfo = response.result
+      })
+    })
   }
 }
 </script>

@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="ClassModel">
-    <resultMap id="BaseResultMap" type="ClassModel">
+<mapper namespace="TeacherModel">
+    <resultMap id="BaseResultMap" type="TeacherModel">
         <id column="id" property="id" jdbcType="BIGINT"/>
-        <result column="class_name" property="className" jdbcType="VARCHAR"></result>
+        <result column="teacher_name" property="teacherName" jdbcType="VARCHAR"></result>
+        <result column="password" property="password" jdbcType="VARCHAR"></result>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"></result>
         <result column="create_date" property="createDate"  jdbcType="TIMESTAMP"></result>
         <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"></result>
     </resultMap>
     <sql id="Base_Column_List">
-        id, class_name,create_date, update_date
+        id, teacher_name,password,create_date, update_date
     </sql>
-    <sql id="table_name">classes</sql>
+    <sql id="table_name">teacher</sql>
     <sql id="criteria">
         <where>
-            <if test="className != null"> AND `class_name`=#{className}</if>
-            <if test="id != null">AND `id` = #{id}</if>
-            <if test="list != null and list.size>0">AND id  in
-                <foreach collection="list" open="(" separator="," close=")" item="id">
-                    #{id}
-                </foreach>
-            </if>
+            <if test="teacherName != null"> AND `teacher_name`=#{teacherName}</if>
+            <if test="userId != null"> AND `user_id`=#{userId}</if>
         </where>
     </sql>
     <select id="list" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
-        from classes
+        from teacher
         <include refid="criteria"/>
     </select>
     <select id="findByUniqueIndex" resultMap="BaseResultMap" parameterType="map">
@@ -37,29 +34,38 @@
         delete from <include refid="table_name"/>
         where id=#{id}
     </delete>
-    <update id="update" parameterType="ClassModel">
+    <update id="update" parameterType="TeacherModel">
         update <include refid="table_name"/>
-      <set>
-          <if test="className!=null">
-              class_name=#{className, jdbcType=VARCHAR},
-          </if>
-          <if test="createDate != null">
-              create_date = #{createDate,jdbcType=TIMESTAMP},
-          </if>
-          <if test="updateDate != null">
-              update_date = #{updateDate,jdbcType=TIMESTAMP},
-          </if>
-      </set>
+        <set>
+            <if test="teacherName!=null">
+                teacher_name=#{teacherName, jdbcType=VARCHAR},
+            </if>
+            <if test="password!=null">
+                password=#{password, jdbcType=VARCHAR},
+            </if>
+            <if test="userId!=null">
+                user_id=#{userId, jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
     <insert id="create">
         insert into <include refid="table_name"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id!=null">
-                id,
+            <if test="teacherName!=null">
+                teacher_name,
             </if>
-            <if test="className!=null">
-                class_name,
+            <if test="password!=null">
+                password,
+            </if>
+            <if test="userId!=null">
+                user_id,
             </if>
             <if test=" createDate != null">
                 create_date,
@@ -69,11 +75,14 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
+            <if test="teacherName!=null">
+                #{teacherName, jdbcType=VARCHAR},
             </if>
-            <if test="className!=null">
-                #{className,jdbcType=VARCHAR},
+            <if test="password!=null">
+                #{password, jdbcType=VARCHAR},
+            </if>
+            <if test="userId!=null">
+                #{userId, jdbcType=VARCHAR},
             </if>
             <if test="createDate != null">
                 #{createDate,jdbcType=TIMESTAMP},

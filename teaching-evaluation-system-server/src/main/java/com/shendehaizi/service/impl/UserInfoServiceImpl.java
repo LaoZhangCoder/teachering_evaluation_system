@@ -2,14 +2,8 @@ package com.shendehaizi.service.impl;
 
 import com.google.common.collect.Maps;
 import com.shendehaizi.Exception.ServiceException;
-import com.shendehaizi.dao.AdminDao;
-import com.shendehaizi.dao.RoleDao;
-import com.shendehaizi.dao.StudentDao;
-import com.shendehaizi.dao.UserActivationDao;
-import com.shendehaizi.model.AdminModel;
-import com.shendehaizi.model.RoleModel;
-import com.shendehaizi.model.StudentModel;
-import com.shendehaizi.model.UserActivationModel;
+import com.shendehaizi.dao.*;
+import com.shendehaizi.model.*;
 import com.shendehaizi.request.UserRegisterRequest;
 import com.shendehaizi.response.Response;
 import com.shendehaizi.response.UserInfo;
@@ -37,6 +31,10 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Autowired
     private StudentDao studentDao;
 
+    @Autowired
+    private TeacherDao teacherDao;
+
+
     @Override
     public UserInfo getUserInfo(String token) {
         UserInfo userInfo = new UserInfo();
@@ -60,6 +58,23 @@ public class UserInfoServiceImpl implements UserInfoService {
                 userInfo.setUserId(adminInfo.getAdminId());
             }
             return userInfo;
+        }else if(userRole.equals("student")){
+            param.put("userId",userId);
+            StudentModel studentModel = studentDao.findByUniqueIndex(param);
+            if(studentModel==null){
+                log.error("用户信息获取失败!");
+                throw new ServiceException("用户信息获取失败!");
+            }
+            Map<String,Integer> roleParam=Maps.newHashMap();
+            roleParam.put("id",1);
+            RoleModel roleInfo = roleDao.getRoleInfo(roleParam);
+            if(roleInfo!=null) {
+                userInfo.setRoleId(roleInfo.getId());
+                userInfo.setRoleName(roleInfo.getRoleName());
+                userInfo.setUserId(studentModel.getUserId());
+                userInfo.setUserName(studentModel.getStudentName());
+            }
+            return userInfo;
         }
         return null;
     }
@@ -78,19 +93,40 @@ public class UserInfoServiceImpl implements UserInfoService {
         if(activationModel.getStatus().equals(1)){
             throw  new ServiceException("该用户已被注册");
         }
-        StudentModel studentModel = new StudentModel();
-        BeanUtils.copyProperties(request,studentModel);
-        studentModel.setStudentName(request.getUserName());
-        studentModel.setUpdateDate(new Date());
-        studentModel.setCreateDate(new Date());
-        Boolean aBoolean = studentDao.create(studentModel);
-        if(aBoolean){
-            activationModel.setStatus(1);
-            userActivationDao.update(activationModel);
-            response.setResult("注册成功");
+        if(isStudent(request)) {
+            StudentModel studentModel = new StudentModel();
+            BeanUtils.copyProperties(request, studentModel);
+            studentModel.setStudentName(request.getUserName());
+            studentModel.setUpdateDate(new Date());
+            studentModel.setCreateDate(new Date());
+            Boolean aBoolean = studentDao.create(studentModel);
+            if (aBoolean) {
+                activationModel.setStatus(1);
+                userActivationDao.update(activationModel);
+                response.setResult("注册成功");
+            } else {
+                response.setError("注册失败");
+            }
         }else{
-            response.setError("注册失败");
+            TeacherModel teacherModel = new TeacherModel();
+            teacherModel.setCreateDate(new Date());
+            teacherModel.setPassword(request.getPassword());
+            teacherModel.setTeacherName(request.getUserName());
+            teacherModel.setUpdateDate(new Date());
+            teacherModel.setUserId(request.getUserId());
+            Boolean aBoolean = teacherDao.create(teacherModel);
+            if (aBoolean) {
+                activationModel.setStatus(1);
+                userActivationDao.update(activationModel);
+                response.setResult("注册成功");
+            } else {
+                response.setError("注册失败");
+            }
         }
         return  response;
+    }
+
+    private boolean isStudent(UserRegisterRequest request) {
+        return request.getRoleId().equals(1);
     }
 }

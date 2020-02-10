@@ -128,7 +128,12 @@ export default {
         if (valid) {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
+            if (this.loginForm.roleId === '3') {
+              this.$router.push({ path: this.redirect || '/' })
+            }
+            if (this.loginForm.roleId === '1') {
+              this.$router.push('/student/index')
+            }
             this.loading = false
           }).catch(() => {
             this.loading = false
