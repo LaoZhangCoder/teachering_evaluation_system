@@ -76,6 +76,13 @@ export function updateMajor(data) {
     data
   })
 }
+export function updateStudent(data) {
+  return request({
+    url: '/student/update',
+    method: 'post',
+    data
+  })
+}
 export function updateClass(data) {
   return request({
     url: '/class/update',
@@ -125,7 +132,7 @@ export function updateDepartment(newDepartmentName, oldDepartmentName, id) {
 }
 export function logout() {
   return request({
-    url: '/sign-out',
+    url: '/user/sign-out',
     method: 'get'
   })
 }

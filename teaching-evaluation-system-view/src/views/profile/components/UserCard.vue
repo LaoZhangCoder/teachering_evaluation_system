@@ -32,15 +32,15 @@
         <div class="user-bio-section-body">
           <div class="progress-item">
             <span>所属学院:</span>
-            {{this.userInfo.departmentName}}
+            {{ this.userInfo.departmentName }}
           </div>
           <div class="progress-item">
             <span>所属专业:</span>
-            {{this.userInfo.majorName}}
+            {{ this.userInfo.majorName }}
           </div>
           <div class="progress-item">
             <span>所属班级:</span>
-            {{this.userInfo.className}}
+            {{ this.userInfo.className }}
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
 <script>
 import PanThumb from '@/components/PanThumb'
 import store from '@/store'
-import { getInfo,getStudentInfoDetail } from '@/api/user'
+import { getInfo, getStudentInfoDetail } from '@/api/user'
 export default {
   components: { PanThumb },
   props: {

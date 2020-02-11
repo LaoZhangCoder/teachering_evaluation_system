@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="CourseModel">
+    <resultMap id="BaseResultMap" type="CourseModel">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="course_name" property="courseName" jdbcType="VARCHAR"></result>
+        <result column="department_id" property="departmentId" jdbcType="BIGINT"></result>
+        <result column="major_id" property="majorId" jdbcType="BIGINT"></result>
+        <result column="class_id" property="classId" jdbcType="BIGINT"></result>
+        <result column="create_date" property="createDate"  jdbcType="TIMESTAMP"></result>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"></result>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, course_name,department_id,major_id,class_id,create_date, update_date
+    </sql>
+    <sql id="table_name">course</sql>
+    <sql id="criteria">
+        <where>
+            <if test="courseName != null"> AND `course_name`=#{courseName}</if>
+            <if test="id != null"> AND `id`=#{id}</if>
+        </where>
+    </sql>
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from course
+        <include refid="criteria"/>
+    </select>
+    <select id="findByUniqueIndex" resultMap="BaseResultMap" parameterType="map">
+        select <include refid="Base_Column_List" />
+        from <include refid="table_name"/>
+        <include refid="criteria"/>
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from <include refid="table_name"/>
+        where id=#{id}
+    </delete>
+    <update id="update" parameterType="CourseModel">
+        update <include refid="table_name"/>
+        <set>
+            <if test="courseName!=null">
+                course_name=#{courseName, jdbcType=VARCHAR},
+            </if>
+            <if test="departmentId!=null">
+                department_id=#{departmentId, jdbcType=BIGINT},
+            </if>
+            <if test="majorId!=null">
+                major_id=#{majorId, jdbcType=BIGINT},
+            </if>
+            <if test="classId!=null">
+                class_id=#{classId, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="create" parameterType="CourseModel">
+        insert into <include refid="table_name"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="courseName!=null">
+                course_name,
+            </if>
+            <if test="departmentId!=null">
+                department_id,
+            </if>
+            <if test="majorId!=null">
+                major_id,
+            </if>
+            <if test=" classId != null">
+                class_id,
+            </if>
+            <if test=" createDate != null">
+                create_date,
+            </if>
+            <if test=" updateDate != null">
+                update_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="courseName!=null">
+                #{courseName, jdbcType=VARCHAR},
+            </if>
+            <if test="departmentId!=null">
+                #{departmentId, jdbcType=BIGINT},
+            </if>
+            <if test="majorId!=null">
+                #{majorId, jdbcType=BIGINT},
+            </if>
+            <if test="classId!=null">
+                #{classId, jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="paging" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from <include refid="table_name" />
+        LIMIT #{offset}, #{limit}
+    </select>
+    <select id="count" resultType="long">
+        select count(*) from <include refid="table_name"/>
+    </select>
+</mapper>

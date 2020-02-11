@@ -226,6 +226,20 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/user/course',
+
+    // 你可以选择不同的layout组件
+    component: Layout,
+
+    // 这里开始对应的路由都会显示在app-main中 如上图所示
+    children: [{
+      path: 'index',
+      component: () => import('@/views/course/permission/index'),
+      name: '添加课程',
+      meta: { title: '添加课程', icon: 'dashboard', affix: true }
+    }]
+  },
+  {
     path: '/student/index',
     component: Student,
     children: [
@@ -238,12 +252,36 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/student/',
+    component: Student,
+    children: [
+      {
+        path: 'score',
+        component: () => import('@/views/table/drag-table'),
+        name: '评分教师列表',
+        meta: { title: '评分列表', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
     children: [
       {
         path: 'dashboard',
+        component: () => import('@/views/admin/index'),
+        name: '首页',
+        meta: { title: '首页', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/admin',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
         component: () => import('@/views/admin/index'),
         name: '首页',
         meta: { title: '首页', icon: 'dashboard', affix: true }

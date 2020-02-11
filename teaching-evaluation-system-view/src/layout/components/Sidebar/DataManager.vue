@@ -34,7 +34,7 @@ export default {
           label: '用户管理'
         },
         {
-          label: '科目管理'
+          label: '课程管理'
         }
         ]
       }]
@@ -53,6 +53,9 @@ export default {
       }
       if (dropNode.label === '用户管理') {
         this.$router.push('/user/index')
+      }
+      if (dropNode.label === '课程管理') {
+        this.$router.push('/user/course/index')
       }
     }
   }

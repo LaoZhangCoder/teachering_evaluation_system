@@ -7,10 +7,7 @@ import com.shendehaizi.response.UserInfo;
 import com.shendehaizi.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RestController
@@ -32,5 +29,12 @@ public class UserInfoController {
     @PostMapping(value = "/user/register")
     public Response<String>  userRegister(@RequestBody UserRegisterRequest request){
         return userInfoService.handleStudentRegister(request);
+    }
+
+    @GetMapping(value = "/user/sign-out")
+    public Response<String> logout(){
+        Response<String> response = new Response<>();
+        response.setResult("退出登录成功!");
+        return  response;
     }
 }

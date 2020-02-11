@@ -129,7 +129,7 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             if (this.loginForm.roleId === '3') {
-              this.$router.push({ path: this.redirect || '/' })
+              this.$router.push('/')
             }
             if (this.loginForm.roleId === '1') {
               this.$router.push('/student/index')

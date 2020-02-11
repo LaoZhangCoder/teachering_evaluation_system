@@ -30,10 +30,9 @@ export default {
   },
   methods: {
     handleNodeClick: function(dropNode) {
-      if (dropNode.label === '院系管理') {
-
+      if (dropNode.label === '进行评教') {
+        this.$router.push('/student/score')
       }
-
     }
   }
 }

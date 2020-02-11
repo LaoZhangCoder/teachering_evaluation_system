@@ -19,12 +19,11 @@ router.beforeEach(async(to, from, next) => {
 
   // determine whether the user has logged in
   const hasToken = getToken()
-
   if (hasToken) {
     if (to.path === '/dashboard') {
       // if is logged in, redirect to the home page
       if (store.state.user.name === '3') {
-        next({ path: '/' })
+        next({ path: '/admin/index' })
       }
       if (store.state.user.name === '1') {
         next({ path: '/student/index' })

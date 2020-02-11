@@ -8,49 +8,31 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="180px" align="center" label="Date">
+
+      <el-table-column min-width="300px" label="教师名称">
         <template slot-scope="{row}">
-          <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ row.teacherName }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="300px" label="Title">
+      <el-table-column width="110px" align="center" label="所在院系">
         <template slot-scope="{row}">
-          <span>{{ row.title }}</span>
+          <span>{{ row.departmentName }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="110px" align="center" label="Author">
+      <el-table-column width="110px" align="center" label="所在专业">
         <template slot-scope="{row}">
-          <span>{{ row.author }}</span>
+          <span>{{ row.majorName }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="100px" label="Importance">
+      <el-table-column width="110px" align="center" label="所在班级">
         <template slot-scope="{row}">
-          <svg-icon v-for="n in + row.importance" :key="n" icon-class="star" class="icon-star" />
+          <span>{{ row.className }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="Readings" width="95">
-        <template slot-scope="{row}">
-          <span>{{ row.pageviews }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column class-name="status-col" label="Status" width="110">
-        <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
-          </el-tag>
-        </template>
-      </el-table-column>
-
-      <el-table-column align="center" label="Drag" width="80">
-        <template slot-scope="{}">
-          <svg-icon class="drag-handler" icon-class="drag" />
-        </template>
-      </el-table-column>
     </el-table>
     <div class="show-d">
       <el-tag>The default order :</el-tag> {{ oldList }}
@@ -79,7 +61,7 @@ export default {
   },
   data() {
     return {
-      list: null,
+      list: [],
       total: null,
       listLoading: true,
       listQuery: {

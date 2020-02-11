@@ -13,6 +13,12 @@ export function getRoles() {
     method: 'get'
   })
 }
+export function getCourses() {
+  return request({
+    url: '/user/course/list',
+    method: 'get'
+  })
+}
 export function getAdmins() {
   return request({
     url: '/admin/list',
@@ -22,6 +28,13 @@ export function getAdmins() {
 export function getPageRoles(currentPage) {
   return request({
     url: '/user/page',
+    method: 'get',
+    params: { currentPage }
+  })
+}
+export function getPageCourses(currentPage) {
+  return request({
+    url: '/user/course/page',
     method: 'get',
     params: { currentPage }
   })
@@ -36,6 +49,13 @@ export function getPageAdmins(currentPage) {
 export function addRole(data) {
   return request({
     url: '/user/activation',
+    method: 'post',
+    data
+  })
+}
+export function addCourse(data) {
+  return request({
+    url: '/user/course/add',
     method: 'post',
     data
   })
@@ -55,6 +75,13 @@ export function updateRole(id, data) {
     data
   })
 }
+export function updateCourse(id, data) {
+  return request({
+    url: `/user/course/update/${id}`,
+    method: 'post',
+    data
+  })
+}
 export function updateAdmin(id, data) {
   return request({
     url: `/admin/update/${id}`,
@@ -70,6 +97,12 @@ export function deleteRole(id) {
   })
 }
 
+export function deleteCourse(id) {
+  return request({
+    url: `/user/course/delete/${id}`,
+    method: 'get'
+  })
+}
 export function deleteAdmin(id) {
   return request({
     url: `/admin/delete/${id}`,
