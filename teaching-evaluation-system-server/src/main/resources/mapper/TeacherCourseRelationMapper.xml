@@ -14,6 +14,9 @@
     <sql id="Base_Column_List">
         id, user_id,department_id, major_id,class_id,course_id, create_date,update_date
     </sql>
+    <sql id="table_name">
+        teacher_course_relation
+    </sql>
     <sql id="criteria">
         <where>
             <if test="id != null">AND `id` = #{id}</if>
@@ -122,4 +125,15 @@
     <delete id="deleteByClassId" parameterType="long">
         delete from teacher_course_relation where class_id=#{classId}
     </delete>
+    <select id="paging" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from <include refid="table_name" />
+        <include refid="criteria"/>
+        LIMIT #{offset}, #{limit}
+    </select>
+    <select id="count" resultType="long">
+        select count(*) from <include refid="table_name"/>
+        <include refid="criteria"/>
+    </select>
 </mapper>

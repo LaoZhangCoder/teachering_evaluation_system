@@ -19,6 +19,12 @@ export function getCourses() {
     method: 'get'
   })
 }
+export function getTeacherCourses(userId) {
+  return request({
+    url: `/teacher/course/list/${userId}`,
+    method: 'get'
+  })
+}
 export function getAdmins() {
   return request({
     url: '/admin/list',
@@ -37,6 +43,13 @@ export function getPageCourses(currentPage) {
     url: '/user/course/page',
     method: 'get',
     params: { currentPage }
+  })
+}
+export function getPageTeacherCourses(currentPage, userId) {
+  return request({
+    url: '/teacher/course/page',
+    method: 'get',
+    params: { currentPage, userId }
   })
 }
 export function getPageAdmins(currentPage) {
@@ -107,6 +120,12 @@ export function deleteRole(id) {
 export function deleteCourse(id) {
   return request({
     url: `/user/course/delete/${id}`,
+    method: 'get'
+  })
+}
+export function deleteTeacherCourse(id) {
+  return request({
+    url: `/teacher/course/delete/${id}`,
     method: 'get'
   })
 }

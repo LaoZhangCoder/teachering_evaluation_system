@@ -4,12 +4,7 @@
     <el-table :data="rolesList" style="width: 100%;margin-top:30px;" border>
       <el-table-column align="center" label="教师编号" width="220">
         <template slot-scope="scope">
-          {{ scope.row.id }}
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="教师名称" width="220">
-        <template slot-scope="scope">
-          {{ scope.row.courseName }}
+          {{ scope.row.teacherId }}
         </template>
       </el-table-column>
       <el-table-column align="center" label="所教课程" width="220">
@@ -34,7 +29,6 @@
       </el-table-column>
       <el-table-column align="center" label="Operations">
         <template slot-scope="scope">
-          <el-button type="primary" size="small" @click="handleEdit(scope)">Edit</el-button>
           <el-button type="danger" size="small" @click="handleDelete(scope)">Delete</el-button>
         </template>
       </el-table-column>
@@ -83,7 +77,7 @@
 import path from 'path'
 import store from '@/store'
 import { deepClone } from '@/utils'
-import { getRoutes, getCourses, addTeacherCourse, deleteCourse, updateCourse, getPageCourses } from '@/api/role'
+import { getRoutes, getTeacherCourses, addTeacherCourse, deleteTeacherCourse, getPageTeacherCourses } from '@/api/role'
 import { queryDepartment, queryClassesByCondition, queryMajorByCondition, queryCourseByCondition } from '@/api/user'
 const defaultRole = {
   departmentId: '',
@@ -152,7 +146,7 @@ export default {
       })
     },
     async getCourses() {
-      const res = await getCourses()
+      const res = await getTeacherCourses(store.getters.token)
       this.rolesList = res.result
       this.count = res.count
     },
@@ -199,7 +193,7 @@ export default {
       return data
     },
     async handleCurrentChange(currentPage) {
-      const res = await getPageCourses(currentPage)
+      const res = await getPageTeacherCourses(currentPage, store.getters.token)
       this.rolesList = res.result
       this.count = res.count
     },
@@ -231,7 +225,7 @@ export default {
         type: 'warning'
       })
         .then(async() => {
-          await deleteCourse(this.rolesList[$index].id)
+          await deleteTeacherCourse(this.rolesList[$index].id)
           this.rolesList.splice($index, 1)
           this.$message({
             type: 'success',
@@ -260,15 +254,9 @@ export default {
     async confirmRole() {
       const isEdit = this.dialogType === 'edit'
       if (isEdit) {
-        await updateCourse(this.id, this.course)
-        for (let index = 0; index < this.rolesList.length; index++) {
-          if (this.rolesList[index].key === this.course.key) {
-            this.rolesList.splice(index, 1, Object.assign({}, this.course))
-            break
-          }
-        }
+
       } else {
-        await addTeacherCourse(this.course,store.getters.token)
+        await addTeacherCourse(this.course, store.getters.token)
       }
 
       this.dialogVisible = false

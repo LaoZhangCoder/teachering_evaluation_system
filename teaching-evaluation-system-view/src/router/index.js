@@ -257,7 +257,7 @@ export const constantRoutes = [
     path: '/teacher/course',
 
     // 你可以选择不同的layout组件
-    component: Layout,
+    component: Teacher,
 
     // 这里开始对应的路由都会显示在app-main中 如上图所示
     children: [{

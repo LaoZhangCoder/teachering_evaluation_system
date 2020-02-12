@@ -595,3 +595,377 @@ Consider defining a bean of type 'com.shendehaizi.dao.TeacherCourseRelationDao' 
 2020-02-12 17:05:23.130  INFO 7916 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2020-02-12 17:05:23.136  INFO 7916 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
 2020-02-12 17:05:23.263  INFO 7916 --- [http-nio-8888-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-12 18:47:54.834  INFO 428 --- [main] eachingEvaluationSystemServerApplication : Starting TeachingEvaluationSystemServerApplication on Mirszhang with PID 428 (started by 老张 in F:\毕业设计\teaching-evaluation-system-server)
+2020-02-12 18:47:54.852  INFO 428 --- [main] eachingEvaluationSystemServerApplication : No active profile set, falling back to default profiles: default
+2020-02-12 18:47:56.350  WARN 428 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.shendehaizi.teachingevaluationsystemserver]' package. Please check your configuration.
+2020-02-12 18:47:56.803  INFO 428 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2020-02-12 18:47:56.812  INFO 428 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-12 18:47:56.812  INFO 428 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-02-12 18:47:56.814  INFO 428 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-02-12 18:47:56.814  INFO 428 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2020-02-12 18:47:56.814  INFO 428 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-12 18:47:56.815  INFO 428 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-12 18:47:57.887  INFO 428 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2020-02-12 18:47:57.972  INFO 428 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-12 18:47:57.972  INFO 428 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3046 ms
+2020-02-12 18:47:58.985  INFO 428 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-12 18:47:59.322  INFO 428 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2020-02-12 18:47:59.325  INFO 428 --- [main] eachingEvaluationSystemServerApplication : Started TeachingEvaluationSystemServerApplication in 4.945 seconds (JVM running for 6.981)
+2020-02-12 18:48:17.986  INFO 428 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-12 18:48:17.986  INFO 428 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-12 18:48:18.023  INFO 428 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 37 ms
+2020-02-12 18:48:42.019  INFO 428 --- [http-nio-8888-exec-4] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-12 18:57:15.051  INFO 12160 --- [main] eachingEvaluationSystemServerApplication : Starting TeachingEvaluationSystemServerApplication on Mirszhang with PID 12160 (started by 老张 in F:\毕业设计\teaching-evaluation-system-server)
+2020-02-12 18:57:15.058  INFO 12160 --- [main] eachingEvaluationSystemServerApplication : No active profile set, falling back to default profiles: default
+2020-02-12 18:57:15.879  WARN 12160 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.shendehaizi.teachingevaluationsystemserver]' package. Please check your configuration.
+2020-02-12 18:57:26.673  INFO 12160 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2020-02-12 18:57:26.685  INFO 12160 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-12 18:57:26.686  INFO 12160 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-02-12 18:57:26.688  INFO 12160 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-02-12 18:57:26.689  INFO 12160 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2020-02-12 18:57:26.689  INFO 12160 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-12 18:57:26.689  INFO 12160 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-12 18:57:27.761  INFO 12160 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2020-02-12 18:57:27.890  INFO 12160 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-12 18:57:27.890  INFO 12160 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 12758 ms
+2020-02-12 18:57:28.815  INFO 12160 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-12 18:57:29.085  INFO 12160 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2020-02-12 18:57:29.089  INFO 12160 --- [main] eachingEvaluationSystemServerApplication : Started TeachingEvaluationSystemServerApplication in 15.026 seconds (JVM running for 16.738)
+2020-02-12 18:57:31.602  INFO 12160 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-12 18:57:31.603  INFO 12160 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-12 18:57:31.610  INFO 12160 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2020-02-12 18:57:31.821  INFO 12160 --- [http-nio-8888-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-12 18:58:43.480  INFO 12160 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-02-12 18:58:43.507  INFO 12160 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2020-02-12 18:58:52.488  INFO 2804 --- [main] eachingEvaluationSystemServerApplication : Starting TeachingEvaluationSystemServerApplication on Mirszhang with PID 2804 (started by 老张 in F:\毕业设计\teaching-evaluation-system-server)
+2020-02-12 18:58:52.491  INFO 2804 --- [main] eachingEvaluationSystemServerApplication : No active profile set, falling back to default profiles: default
+2020-02-12 18:58:53.522  WARN 2804 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.shendehaizi.teachingevaluationsystemserver]' package. Please check your configuration.
+2020-02-12 18:58:53.922  INFO 2804 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2020-02-12 18:58:53.929  INFO 2804 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-12 18:58:53.930  INFO 2804 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-02-12 18:58:53.931  INFO 2804 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-02-12 18:58:53.931  INFO 2804 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2020-02-12 18:58:53.931  INFO 2804 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-12 18:58:53.932  INFO 2804 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-12 18:58:55.062  INFO 2804 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2020-02-12 18:58:55.152  INFO 2804 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-12 18:58:55.152  INFO 2804 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2607 ms
+2020-02-12 18:58:55.855  INFO 2804 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-12 18:58:56.133  INFO 2804 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2020-02-12 18:58:56.136  INFO 2804 --- [main] eachingEvaluationSystemServerApplication : Started TeachingEvaluationSystemServerApplication in 4.208 seconds (JVM running for 5.278)
+2020-02-12 18:59:05.358  INFO 2804 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-12 18:59:05.358  INFO 2804 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-12 18:59:05.364  INFO 2804 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2020-02-12 18:59:05.524  INFO 2804 --- [http-nio-8888-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-12 19:07:54.919  INFO 19208 --- [main] eachingEvaluationSystemServerApplication : Starting TeachingEvaluationSystemServerApplication on Mirszhang with PID 19208 (started by 老张 in F:\毕业设计\teaching-evaluation-system-server)
+2020-02-12 19:07:54.926  INFO 19208 --- [main] eachingEvaluationSystemServerApplication : No active profile set, falling back to default profiles: default
+2020-02-12 19:07:55.788  WARN 19208 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.shendehaizi.teachingevaluationsystemserver]' package. Please check your configuration.
+2020-02-12 19:07:56.132  INFO 19208 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2020-02-12 19:07:56.140  INFO 19208 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-12 19:07:56.140  INFO 19208 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-02-12 19:07:56.142  INFO 19208 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-02-12 19:07:56.142  INFO 19208 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2020-02-12 19:07:56.142  INFO 19208 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-12 19:07:56.142  INFO 19208 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-12 19:07:57.216  INFO 19208 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2020-02-12 19:07:57.306  INFO 19208 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-12 19:07:57.306  INFO 19208 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2298 ms
+2020-02-12 19:07:57.999  INFO 19208 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-12 19:07:58.199  INFO 19208 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2020-02-12 19:07:58.205  INFO 19208 --- [main] eachingEvaluationSystemServerApplication : Started TeachingEvaluationSystemServerApplication in 3.779 seconds (JVM running for 4.825)
+2020-02-12 19:11:46.738  INFO 19208 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-12 19:11:46.738  INFO 19208 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-12 19:11:47.018  INFO 19208 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 280 ms
+2020-02-12 19:11:48.283  INFO 19208 --- [http-nio-8888-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-12 19:14:18.513  INFO 8580 --- [main] eachingEvaluationSystemServerApplication : Starting TeachingEvaluationSystemServerApplication on Mirszhang with PID 8580 (started by 老张 in F:\毕业设计\teaching-evaluation-system-server)
+2020-02-12 19:14:18.516  INFO 8580 --- [main] eachingEvaluationSystemServerApplication : No active profile set, falling back to default profiles: default
+2020-02-12 19:14:19.248  WARN 8580 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.shendehaizi.teachingevaluationsystemserver]' package. Please check your configuration.
+2020-02-12 19:14:19.637  INFO 8580 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2020-02-12 19:14:19.647  INFO 8580 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-12 19:14:19.647  INFO 8580 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-02-12 19:14:19.649  INFO 8580 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-02-12 19:14:19.649  INFO 8580 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2020-02-12 19:14:19.649  INFO 8580 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-12 19:14:19.649  INFO 8580 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-12 19:14:20.729  INFO 8580 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2020-02-12 19:14:20.861  INFO 8580 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-12 19:14:20.861  INFO 8580 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2299 ms
+2020-02-12 19:14:21.622  INFO 8580 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-12 19:14:21.840  INFO 8580 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2020-02-12 19:14:21.844  INFO 8580 --- [main] eachingEvaluationSystemServerApplication : Started TeachingEvaluationSystemServerApplication in 3.855 seconds (JVM running for 4.956)
+2020-02-12 19:14:29.641  INFO 8580 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-12 19:14:29.641  INFO 8580 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-12 19:14:29.646  INFO 8580 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2020-02-12 19:14:29.777  INFO 8580 --- [http-nio-8888-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-12 19:25:18.572  INFO 1276 --- [main] eachingEvaluationSystemServerApplication : Starting TeachingEvaluationSystemServerApplication on Mirszhang with PID 1276 (started by 老张 in F:\毕业设计\teaching-evaluation-system-server)
+2020-02-12 19:25:18.575  INFO 1276 --- [main] eachingEvaluationSystemServerApplication : No active profile set, falling back to default profiles: default
+2020-02-12 19:25:19.436  WARN 1276 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.shendehaizi.teachingevaluationsystemserver]' package. Please check your configuration.
+2020-02-12 19:25:19.816  INFO 1276 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2020-02-12 19:25:19.824  INFO 1276 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-12 19:25:19.825  INFO 1276 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-02-12 19:25:19.826  INFO 1276 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-02-12 19:25:19.826  INFO 1276 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2020-02-12 19:25:19.826  INFO 1276 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-12 19:25:19.827  INFO 1276 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-12 19:25:20.921  INFO 1276 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2020-02-12 19:25:21.014  INFO 1276 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-12 19:25:21.015  INFO 1276 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2352 ms
+2020-02-12 19:25:21.765  INFO 1276 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-12 19:25:21.966  INFO 1276 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2020-02-12 19:25:21.972  INFO 1276 --- [main] eachingEvaluationSystemServerApplication : Started TeachingEvaluationSystemServerApplication in 3.978 seconds (JVM running for 5.102)
+2020-02-12 19:25:27.641  INFO 1276 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-12 19:25:27.642  INFO 1276 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-12 19:25:27.647  INFO 1276 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2020-02-12 19:25:27.781  INFO 1276 --- [http-nio-8888-exec-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-12 19:30:09.772  INFO 20904 --- [main] eachingEvaluationSystemServerApplication : Starting TeachingEvaluationSystemServerApplication on Mirszhang with PID 20904 (started by 老张 in F:\毕业设计\teaching-evaluation-system-server)
+2020-02-12 19:30:09.775  INFO 20904 --- [main] eachingEvaluationSystemServerApplication : No active profile set, falling back to default profiles: default
+2020-02-12 19:30:10.706  WARN 20904 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.shendehaizi.teachingevaluationsystemserver]' package. Please check your configuration.
+2020-02-12 19:30:11.032  INFO 20904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2020-02-12 19:30:11.039  INFO 20904 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-12 19:30:11.040  INFO 20904 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-02-12 19:30:11.041  INFO 20904 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-02-12 19:30:11.041  INFO 20904 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2020-02-12 19:30:11.042  INFO 20904 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-12 19:30:11.042  INFO 20904 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-12 19:30:12.124  INFO 20904 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2020-02-12 19:30:12.206  INFO 20904 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-12 19:30:12.206  INFO 20904 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2372 ms
+2020-02-12 19:30:12.864  INFO 20904 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-12 19:30:13.059  INFO 20904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2020-02-12 19:30:13.062  INFO 20904 --- [main] eachingEvaluationSystemServerApplication : Started TeachingEvaluationSystemServerApplication in 3.729 seconds (JVM running for 4.729)
+2020-02-12 19:30:22.611  INFO 20904 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-12 19:30:22.611  INFO 20904 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-12 19:30:22.617  INFO 20904 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2020-02-12 19:30:22.746  INFO 20904 --- [http-nio-8888-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-12 19:53:00.541  INFO 21416 --- [main] eachingEvaluationSystemServerApplication : Starting TeachingEvaluationSystemServerApplication on Mirszhang with PID 21416 (started by 老张 in F:\毕业设计\teaching-evaluation-system-server)
+2020-02-12 19:53:00.554  INFO 21416 --- [main] eachingEvaluationSystemServerApplication : No active profile set, falling back to default profiles: default
+2020-02-12 19:53:01.372  WARN 21416 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.shendehaizi.teachingevaluationsystemserver]' package. Please check your configuration.
+2020-02-12 19:53:29.781  INFO 21416 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2020-02-12 19:53:29.793  INFO 21416 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-12 19:53:29.793  INFO 21416 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-02-12 19:53:29.795  INFO 21416 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-02-12 19:53:29.796  INFO 21416 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2020-02-12 19:53:29.796  INFO 21416 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-12 19:53:29.796  INFO 21416 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-12 19:53:30.900  INFO 21416 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2020-02-12 19:53:30.999  INFO 21416 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-12 19:53:31.000  INFO 21416 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 30348 ms
+2020-02-12 19:53:31.895  INFO 21416 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-12 19:53:32.163  INFO 21416 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2020-02-12 19:53:32.167  INFO 21416 --- [main] eachingEvaluationSystemServerApplication : Started TeachingEvaluationSystemServerApplication in 32.359 seconds (JVM running for 33.915)
+2020-02-12 19:53:37.821  INFO 21416 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-12 19:53:37.838  INFO 21416 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-12 19:53:38.591  INFO 21416 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 738 ms
+2020-02-12 19:53:40.503  INFO 21416 --- [http-nio-8888-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-12 19:53:55.041 ERROR 21416 --- [http-nio-8888-exec-2] c.s.service.impl.LoginServiceImpl        : 用户名不存在!
+2020-02-12 19:55:06.475  INFO 21416 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-02-12 19:55:06.492  INFO 21416 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2020-02-12 19:55:13.773  INFO 15640 --- [main] eachingEvaluationSystemServerApplication : Starting TeachingEvaluationSystemServerApplication on Mirszhang with PID 15640 (started by 老张 in F:\毕业设计\teaching-evaluation-system-server)
+2020-02-12 19:55:13.777  INFO 15640 --- [main] eachingEvaluationSystemServerApplication : No active profile set, falling back to default profiles: default
+2020-02-12 19:55:14.745  WARN 15640 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.shendehaizi.teachingevaluationsystemserver]' package. Please check your configuration.
+2020-02-12 19:55:15.209  INFO 15640 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2020-02-12 19:55:15.218  INFO 15640 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-12 19:55:15.219  INFO 15640 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-02-12 19:55:15.220  INFO 15640 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-02-12 19:55:15.220  INFO 15640 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2020-02-12 19:55:15.220  INFO 15640 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-12 19:55:15.221  INFO 15640 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-12 19:55:16.300  INFO 15640 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2020-02-12 19:55:16.394  INFO 15640 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-12 19:55:16.395  INFO 15640 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2557 ms
+2020-02-12 19:55:17.148  INFO 15640 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-12 19:55:17.355  INFO 15640 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2020-02-12 19:55:17.362  INFO 15640 --- [main] eachingEvaluationSystemServerApplication : Started TeachingEvaluationSystemServerApplication in 4.103 seconds (JVM running for 5.126)
+2020-02-12 19:55:17.407  INFO 15640 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-12 19:55:17.407  INFO 15640 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-12 19:55:17.413  INFO 15640 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2020-02-12 19:55:30.850  INFO 15640 --- [http-nio-8888-exec-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-12 19:56:01.213  INFO 2716 --- [main] eachingEvaluationSystemServerApplication : Starting TeachingEvaluationSystemServerApplication on Mirszhang with PID 2716 (started by 老张 in F:\毕业设计\teaching-evaluation-system-server)
+2020-02-12 19:56:01.218  INFO 2716 --- [main] eachingEvaluationSystemServerApplication : No active profile set, falling back to default profiles: default
+2020-02-12 19:56:02.085  WARN 2716 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.shendehaizi.teachingevaluationsystemserver]' package. Please check your configuration.
+2020-02-12 19:56:35.529  INFO 2716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2020-02-12 19:56:35.542  INFO 2716 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-12 19:56:35.542  INFO 2716 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-02-12 19:56:35.544  INFO 2716 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-02-12 19:56:35.545  INFO 2716 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2020-02-12 19:56:35.545  INFO 2716 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-12 19:56:35.545  INFO 2716 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-12 19:56:36.627  INFO 2716 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2020-02-12 19:56:36.719  INFO 2716 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-12 19:56:36.720  INFO 2716 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 35446 ms
+2020-02-12 19:56:37.543  INFO 2716 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-12 19:56:37.788  INFO 2716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2020-02-12 19:56:37.792  INFO 2716 --- [main] eachingEvaluationSystemServerApplication : Started TeachingEvaluationSystemServerApplication in 37.261 seconds (JVM running for 38.66)
+2020-02-12 19:56:45.528  INFO 2716 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-12 19:56:45.528  INFO 2716 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-12 19:56:45.536  INFO 2716 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2020-02-12 19:56:45.732  INFO 2716 --- [http-nio-8888-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-12 19:58:23.201  INFO 2716 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-02-12 19:58:23.205  INFO 2716 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2020-02-12 19:58:27.977  INFO 17420 --- [main] eachingEvaluationSystemServerApplication : Starting TeachingEvaluationSystemServerApplication on Mirszhang with PID 17420 (started by 老张 in F:\毕业设计\teaching-evaluation-system-server)
+2020-02-12 19:58:27.980  INFO 17420 --- [main] eachingEvaluationSystemServerApplication : No active profile set, falling back to default profiles: default
+2020-02-12 19:58:29.067  WARN 17420 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.shendehaizi.teachingevaluationsystemserver]' package. Please check your configuration.
+2020-02-12 19:58:29.421  INFO 17420 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2020-02-12 19:58:29.429  INFO 17420 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-12 19:58:29.430  INFO 17420 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-02-12 19:58:29.431  INFO 17420 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-02-12 19:58:29.431  INFO 17420 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2020-02-12 19:58:29.431  INFO 17420 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-12 19:58:29.431  INFO 17420 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-12 19:58:30.512  INFO 17420 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2020-02-12 19:58:30.602  INFO 17420 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-12 19:58:30.603  INFO 17420 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2572 ms
+2020-02-12 19:58:31.345  INFO 17420 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-12 19:58:31.566  INFO 17420 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2020-02-12 19:58:31.569  INFO 17420 --- [main] eachingEvaluationSystemServerApplication : Started TeachingEvaluationSystemServerApplication in 4.087 seconds (JVM running for 5.231)
+2020-02-12 19:58:44.936  INFO 17420 --- [http-nio-8888-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-12 19:58:44.937  INFO 17420 --- [http-nio-8888-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-12 19:58:44.945  INFO 17420 --- [http-nio-8888-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2020-02-12 19:58:45.113  INFO 17420 --- [http-nio-8888-exec-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-12 19:58:49.003 ERROR 17420 --- [http-nio-8888-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE  `user_id` = '21321' 
+     
+        LIMIT 0, 8' at line 10
+### The error may exist in file [F:\毕业设计\teaching-evaluation-system-server\target\classes\mapper\TeacherCourseRelationMapper.xml]
+### The error may involve TeacherCourseRelationModel.paging-Inline
+### The error occurred while setting parameters
+### SQL: select                   id, user_id,department_id, major_id,class_id,course_id, create_date,update_date               from           teacher_course_relation               where                    WHERE  `user_id` = ?                LIMIT ?, ?
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE  `user_id` = '21321' 
+     
+        LIMIT 0, 8' at line 10
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE  `user_id` = '21321' 
+     
+        LIMIT 0, 8' at line 10] with root cause
+
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE  `user_id` = '21321' 
+     
+        LIMIT 0, 8' at line 10
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:498) ~[druid-1.1.10.jar:1.1.10]
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64) ~[mybatis-3.5.3.jar:3.5.3]
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79) ~[mybatis-3.5.3.jar:3.5.3]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63) ~[mybatis-3.5.3.jar:3.5.3]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324) ~[mybatis-3.5.3.jar:3.5.3]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156) ~[mybatis-3.5.3.jar:3.5.3]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109) ~[mybatis-3.5.3.jar:3.5.3]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83) ~[mybatis-3.5.3.jar:3.5.3]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147) ~[mybatis-3.5.3.jar:3.5.3]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140) ~[mybatis-3.5.3.jar:3.5.3]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_121]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_121]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_121]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_121]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426) ~[mybatis-spring-2.0.3.jar:2.0.3]
+	at com.sun.proxy.$Proxy67.selectList(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:223) ~[mybatis-spring-2.0.3.jar:2.0.3]
+	at io.terminus.common.mysql.dao.MyBatisDao.paging(MyBatisDao.java:234) ~[terminus-common-2.2.RELEASE.jar:na]
+	at io.terminus.common.mysql.dao.MyBatisDao$$FastClassBySpringCGLIB$$e9f3df13.invoke(<generated>) ~[terminus-common-2.2.RELEASE.jar:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769) ~[spring-aop-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747) ~[spring-aop-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139) ~[spring-tx-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747) ~[spring-aop-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689) ~[spring-aop-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at com.shendehaizi.dao.TeacherCourseRelationDao$$EnhancerBySpringCGLIB$$61f1a2e5.paging(<generated>) ~[classes/:na]
+	at com.shendehaizi.service.impl.TeacherServiceImpl.getTeacherCourseInfo(TeacherServiceImpl.java:98) ~[classes/:na]
+	at com.shendehaizi.controller.TeacherController.getTeacherCourseInfo(TeacherController.java:37) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_121]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_121]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_121]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_121]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888) ~[spring-webmvc-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.29.jar:9.0.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526) [tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) [tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860) [tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1591) [tomcat-embed-core-9.0.29.jar:9.0.29]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.29.jar:9.0.29]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_121]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_121]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.29.jar:9.0.29]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_121]
+
+2020-02-12 19:59:55.265  INFO 18372 --- [main] eachingEvaluationSystemServerApplication : Starting TeachingEvaluationSystemServerApplication on Mirszhang with PID 18372 (started by 老张 in F:\毕业设计\teaching-evaluation-system-server)
+2020-02-12 19:59:55.268  INFO 18372 --- [main] eachingEvaluationSystemServerApplication : No active profile set, falling back to default profiles: default
+2020-02-12 19:59:56.248  WARN 18372 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.shendehaizi.teachingevaluationsystemserver]' package. Please check your configuration.
+2020-02-12 19:59:56.586  INFO 18372 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2020-02-12 19:59:56.596  INFO 18372 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-12 19:59:56.596  INFO 18372 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-02-12 19:59:56.598  INFO 18372 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-02-12 19:59:56.598  INFO 18372 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2020-02-12 19:59:56.598  INFO 18372 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-12 19:59:56.598  INFO 18372 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-12 19:59:57.662  INFO 18372 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2020-02-12 19:59:57.744  INFO 18372 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-12 19:59:57.745  INFO 18372 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2419 ms
+2020-02-12 19:59:58.431  INFO 18372 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-12 19:59:58.631  INFO 18372 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2020-02-12 19:59:58.634  INFO 18372 --- [main] eachingEvaluationSystemServerApplication : Started TeachingEvaluationSystemServerApplication in 3.851 seconds (JVM running for 4.891)
+2020-02-12 20:00:02.339  INFO 18372 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-12 20:00:02.340  INFO 18372 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-12 20:00:02.351  INFO 18372 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2020-02-12 20:00:02.483  INFO 18372 --- [http-nio-8888-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-12 20:06:02.103 ERROR 18372 --- [http-nio-8888-exec-5] c.s.service.impl.LoginServiceImpl        : 用户名不存在!
+2020-02-12 20:32:50.174 ERROR 18372 --- [http-nio-8888-exec-9] c.s.service.impl.LoginServiceImpl        : 用户名不存在!
+2020-02-12 20:32:52.890 ERROR 18372 --- [http-nio-8888-exec-1] c.s.service.impl.LoginServiceImpl        : 用户名不存在!
+2020-02-12 20:33:47.718  INFO 14904 --- [main] eachingEvaluationSystemServerApplication : Starting TeachingEvaluationSystemServerApplication on Mirszhang with PID 14904 (started by 老张 in F:\毕业设计\teaching-evaluation-system-server)
+2020-02-12 20:33:47.720  INFO 14904 --- [main] eachingEvaluationSystemServerApplication : No active profile set, falling back to default profiles: default
+2020-02-12 20:33:48.629  WARN 14904 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.shendehaizi.teachingevaluationsystemserver]' package. Please check your configuration.
+2020-02-12 20:33:49.029  INFO 14904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2020-02-12 20:33:49.037  INFO 14904 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-12 20:33:49.038  INFO 14904 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-02-12 20:33:49.039  INFO 14904 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.16] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-02-12 20:33:49.040  INFO 14904 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2020-02-12 20:33:49.040  INFO 14904 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-12 20:33:49.040  INFO 14904 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-12 20:33:50.128  INFO 14904 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2020-02-12 20:33:50.233  INFO 14904 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-12 20:33:50.233  INFO 14904 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2451 ms
+2020-02-12 20:33:50.914  INFO 14904 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-12 20:33:51.113  INFO 14904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2020-02-12 20:33:51.117  INFO 14904 --- [main] eachingEvaluationSystemServerApplication : Started TeachingEvaluationSystemServerApplication in 3.803 seconds (JVM running for 4.794)
+2020-02-12 20:34:05.184  INFO 14904 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-12 20:34:05.184  INFO 14904 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-12 20:34:05.190  INFO 14904 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2020-02-12 20:34:05.317  INFO 14904 --- [http-nio-8888-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
