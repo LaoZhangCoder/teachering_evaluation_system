@@ -8,7 +8,7 @@
       <div class="box-center">
         <pan-thumb :image="user.avatar" style="background-image: url(https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif);" :height="'100px'" :width="'100px'" :hoverable="false">
           <div>Hello</div>
-          {{ user.name }}
+          {{ user.name }}老师
         </pan-thumb>
       </div>
       <div class="box-center">
@@ -28,20 +28,7 @@
       </div>
 
       <div class="user-skills user-bio-section">
-        <div class="user-bio-section-header"><svg-icon icon-class="skill" /><span>具体信息</span></div>
         <div class="user-bio-section-body">
-          <div class="progress-item">
-            <span>所属学院:</span>
-            {{ this.userInfo.departmentName }}
-          </div>
-          <div class="progress-item">
-            <span>所属专业:</span>
-            {{ this.userInfo.majorName }}
-          </div>
-          <div class="progress-item">
-            <span>所属班级:</span>
-            {{ this.userInfo.className }}
-          </div>
         </div>
       </div>
     </div>

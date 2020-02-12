@@ -24,15 +24,21 @@ router.beforeEach(async(to, from, next) => {
       // if is logged in, redirect to the home page
       if (store.state.user.name === '3') {
         next({ path: '/admin/index' })
-      }
-      if (store.state.user.name === '1') {
+      } else if (store.state.user.name === '2') {
+        next({ path: '/teacher/index' })
+      } else if (store.state.user.name === '1') {
         next({ path: '/student/index' })
+      } else {
+        next()
+        NProgress.done()
       }
-      NProgress.done()
     } else if (to.path === '/login') {
       // if is logged in, redirect to the home page
       if (store.state.user.name === '3') {
         next({ path: '/' })
+      }
+      if (store.state.user.name === '2') {
+        next({ path: '/teacher/index' })
       }
       if (store.state.user.name === '1') {
         next({ path: '/student/index' })

@@ -17,4 +17,6 @@ public interface CourseService {
     Response<String> deleteCourseInfo(Long id);
 
     Response<List<CourseInfo>> getPagingCourserInfo(Integer currentPage, int i);
+
+    Response<List<CourseInfo>> listCourseByClassId(Long classId);
 }

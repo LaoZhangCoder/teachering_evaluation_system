@@ -131,6 +131,9 @@ export default {
             if (this.loginForm.roleId === '3') {
               this.$router.push('/')
             }
+            if (this.loginForm.roleId === '2') {
+              this.$router.push('/teacher/index')
+            }
             if (this.loginForm.roleId === '1') {
               this.$router.push('/student/index')
             }

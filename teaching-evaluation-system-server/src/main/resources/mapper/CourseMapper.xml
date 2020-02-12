@@ -17,6 +17,7 @@
     <sql id="criteria">
         <where>
             <if test="courseName != null"> AND `course_name`=#{courseName}</if>
+            <if test="classId != null"> AND `class_id`=#{classId}</if>
             <if test="id != null"> AND `id`=#{id}</if>
         </where>
     </sql>

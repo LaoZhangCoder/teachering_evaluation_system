@@ -60,6 +60,13 @@ export function addCourse(data) {
     data
   })
 }
+export function addTeacherCourse(data, userId) {
+  return request({
+    url: `/teacher/course/add/${userId}`,
+    method: 'post',
+    data
+  })
+}
 export function addAdmin(data) {
   return request({
     url: '/admin/activation',

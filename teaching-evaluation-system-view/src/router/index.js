@@ -6,7 +6,7 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/layout'
 import Student from '@/student'
-
+import Teacher from '@/teacher'
 /* Router Modules */
 import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
@@ -109,6 +109,20 @@ export const constantRoutes = [
     children: [{
       path: 'index',
       component: () => import('@/views/profile/index'),
+      name: '个人信息',
+      meta: { title: '个人信息', icon: 'dashboard', affix: true }
+    }]
+  },
+  {
+    path: '/teacher-info',
+
+    // 你可以选择不同的layout组件
+    component: Teacher,
+
+    // 这里开始对应的路由都会显示在app-main中 如上图所示
+    children: [{
+      path: 'index',
+      component: () => import('@/views/teacher-info/index'),
       name: '个人信息',
       meta: { title: '个人信息', icon: 'dashboard', affix: true }
     }]
@@ -240,12 +254,38 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/teacher/course',
+
+    // 你可以选择不同的layout组件
+    component: Layout,
+
+    // 这里开始对应的路由都会显示在app-main中 如上图所示
+    children: [{
+      path: 'index',
+      component: () => import('@/views/teacher-course/course/index'),
+      name: '进行选课',
+      meta: { title: '进行选课', icon: 'dashboard', affix: true }
+    }]
+  },
+  {
     path: '/student/index',
     component: Student,
     children: [
       {
         path: 'index',
         component: () => import('@/views/student/index'),
+        name: '首页',
+        meta: { title: '首页', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/teacher/index',
+    component: Teacher,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/teacher/index'),
         name: '首页',
         meta: { title: '首页', icon: 'dashboard', affix: true }
       }
@@ -302,6 +342,20 @@ export const constantRoutes = [
       {
         path: 'index',
         component: () => import('@/views/profile/index'),
+        name: 'Profile',
+        meta: { title: 'Profile', icon: 'user', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/teacher-info',
+    component: Layout,
+    redirect: '/teacher-info/index',
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/teacher/index'),
         name: 'Profile',
         meta: { title: 'Profile', icon: 'user', noCache: true }
       }

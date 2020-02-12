@@ -55,6 +55,13 @@ export function queryClassesByCondition(majorId) {
     params: { majorId }
   })
 }
+export function queryCourseByCondition(classId) {
+  return request({
+    url: '/course/list/condition',
+    method: 'get',
+    params: { classId }
+  })
+}
 export function addMajor(data) {
   return request({
     url: '/major/add',
@@ -79,6 +86,13 @@ export function updateMajor(data) {
 export function updateStudent(data) {
   return request({
     url: '/student/update',
+    method: 'post',
+    data
+  })
+}
+export function updateTeacher(data) {
+  return request({
+    url: '/teacher/update',
     method: 'post',
     data
   })

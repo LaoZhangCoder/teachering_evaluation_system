@@ -75,8 +75,25 @@ public class UserInfoServiceImpl implements UserInfoService {
                 userInfo.setUserName(studentModel.getStudentName());
             }
             return userInfo;
+        }else {
+            param.put("userId",userId);
+            TeacherModel teacherModel = teacherDao.findByUniqueIndex(param);
+            if(teacherModel==null){
+                log.error("用户信息获取失败!");
+                throw new ServiceException("用户信息获取失败!");
+            }
+            Map<String,Integer> roleParam=Maps.newHashMap();
+            roleParam.put("id",2);
+            RoleModel roleInfo = roleDao.getRoleInfo(roleParam);
+            if(roleInfo!=null) {
+                userInfo.setRoleId(roleInfo.getId());
+                userInfo.setRoleName(roleInfo.getRoleName());
+                userInfo.setUserId(teacherModel.getUserId());
+                userInfo.setUserName(teacherModel.getTeacherName());
+            }
+            return userInfo;
         }
-        return null;
+
     }
 
     @Override

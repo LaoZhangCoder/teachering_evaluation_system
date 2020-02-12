@@ -9,6 +9,7 @@ import com.shendehaizi.dao.MajorDao;
 import com.shendehaizi.model.*;
 import com.shendehaizi.request.CourseAddRequest;
 import com.shendehaizi.request.CourseUpdateRequest;
+import com.shendehaizi.response.ClassesInfo;
 import com.shendehaizi.response.CourseInfo;
 import com.shendehaizi.response.CourseInfo;
 import com.shendehaizi.response.Response;
@@ -111,6 +112,23 @@ public class CourseServiceImpl implements CourseService {
             List<CourseInfo> collect = paging.getData().stream().map(courseModel -> getCourseInfo(courseModel)).collect(Collectors.toList());
             listResponse.setResult(collect);
         }
+        return listResponse;
+    }
+
+    @Override
+    public Response<List<CourseInfo>> listCourseByClassId(Long classId) {
+        HashMap<String, Object> map = Maps.newHashMap();
+        Response<List<CourseInfo>> listResponse = new Response<>();
+        map.put("classId",classId);
+        List<CourseModel> list = courseDao.list(map);
+        if (list.isEmpty()) return listResponse;
+        List<CourseInfo> collect = list.stream().map(courseModel -> {
+            CourseInfo courseInfo = new CourseInfo();
+            courseInfo.setCourseName(courseModel.getCourseName());
+            courseInfo.setId(courseModel.getId());
+            return courseInfo;
+        }).collect(Collectors.toList());
+        listResponse.setResult(collect);
         return listResponse;
     }
 

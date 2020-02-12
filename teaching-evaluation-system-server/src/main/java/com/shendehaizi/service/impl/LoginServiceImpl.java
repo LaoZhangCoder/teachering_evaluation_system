@@ -5,10 +5,12 @@ import com.shendehaizi.Exception.RoleNotIncludeException;
 import com.shendehaizi.Exception.ServiceException;
 import com.shendehaizi.dao.AdminDao;
 import com.shendehaizi.dao.StudentDao;
+import com.shendehaizi.dao.TeacherDao;
 import com.shendehaizi.enums.Code;
 import com.shendehaizi.enums.UserRole;
 import com.shendehaizi.model.AdminModel;
 import com.shendehaizi.model.StudentModel;
+import com.shendehaizi.model.TeacherModel;
 import com.shendehaizi.request.LoginRequest;
 import com.shendehaizi.response.LoginUserInfo;
 import com.shendehaizi.response.Response;
@@ -27,6 +29,9 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     private StudentDao studentDao;
+
+    @Autowired
+    private TeacherDao teacherDao;
 
     @Override
     public Response<LoginUserInfo> loginCheck(LoginRequest loginRequest) {
@@ -56,7 +61,23 @@ public class LoginServiceImpl implements LoginService {
             loginResponse.setResult(loginUserInfo);
         } else if (roleId.equals(UserRole.Role_Teacher.roleId)) {
             //登入用户是老师
-            return null;
+            HashMap<String, Object> map = Maps.newHashMap();
+            map.put("teacherName",loginRequest.getUsername());
+            TeacherModel teacherModel = teacherDao.findByUniqueIndex(map);
+            if(teacherModel==null){
+                log.error("用户名不存在!");
+                throw new ServiceException("用户名不存在!");
+            }
+            if (!teacherModel.getPassword().equals(loginRequest.getPassword())) {
+                throw new ServiceException("密码错误!");
+            }
+            if(!teacherModel.getUserId().equals(loginRequest.getUserId())){
+                throw new ServiceException("用户id错误!");
+            }
+            LoginUserInfo loginUserInfo = new LoginUserInfo();
+            loginUserInfo.setToken(MD5Util.encrypt_Base64(loginRequest.getUserId()+"_teacher"));
+            loginUserInfo.setRoleId("2");
+            loginResponse.setResult(loginUserInfo);
         } else {
             //管理员
             HashMap<String, Object> param = Maps.newHashMap();

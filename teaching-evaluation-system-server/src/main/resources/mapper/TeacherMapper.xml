@@ -10,7 +10,7 @@
         <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"></result>
     </resultMap>
     <sql id="Base_Column_List">
-        id, teacher_name,password,create_date, update_date
+        id, user_id,teacher_name,password,create_date, update_date
     </sql>
     <sql id="table_name">teacher</sql>
     <sql id="criteria">
