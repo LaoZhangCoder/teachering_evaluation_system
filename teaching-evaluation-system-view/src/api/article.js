@@ -1,10 +1,10 @@
 import request from '@/utils/request'
 
-export function fetchList(query) {
+export function fetchList(token) {
   return request({
-    url: '/article/list',
+    url: '/student/teacher/score',
     method: 'get',
-    params: query
+    params: { token }
   })
 }
 

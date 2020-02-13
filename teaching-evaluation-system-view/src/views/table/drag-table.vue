@@ -2,51 +2,45 @@
   <div class="app-container">
     <!-- Note that row-key is necessary to get a correct row order. -->
     <el-table ref="dragTable" v-loading="listLoading" :data="list" row-key="id" border fit highlight-current-row style="width: 100%">
-      <el-table-column align="center" label="ID" width="65">
+      <el-table-column align="center" label="教师编号" width="65">
         <template slot-scope="{row}">
-          <span>{{ row.id }}</span>
+          <span>{{ row.teacherId }}</span>
         </template>
       </el-table-column>
 
-
-      <el-table-column min-width="300px" label="教师名称">
+      <el-table-column min-width="100px" label="教师名称">
         <template slot-scope="{row}">
           <span>{{ row.teacherName }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="110px" align="center" label="所在院系">
+      <el-table-column width="110px" align="center" label="所教课程">
         <template slot-scope="{row}">
-          <span>{{ row.departmentName }}</span>
+          <span>{{ row.courseName }}</span>
         </template>
       </el-table-column>
-
-      <el-table-column width="110px" align="center" label="所在专业">
+      <el-table-column label="Status" class-name="status-col" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.majorName }}</span>
+          <el-tag :type="row.status | statusFilter">
+            已评教
+          </el-tag>
         </template>
       </el-table-column>
-
-      <el-table-column width="110px" align="center" label="所在班级">
+      <el-table-column width="110px" align="center" label="进行评分">
         <template slot-scope="{row}">
-          <span>{{ row.className }}</span>
+          <el-button size="mini" type="danger" @click="handleScore(row.teacherName,row.courseName)">
+            评分
+          </el-button>
         </template>
       </el-table-column>
-
     </el-table>
-    <div class="show-d">
-      <el-tag>The default order :</el-tag> {{ oldList }}
-    </div>
-    <div class="show-d">
-      <el-tag>The after dragging order :</el-tag> {{ newList }}
-    </div>
   </div>
 </template>
 
 <script>
 import { fetchList } from '@/api/article'
 import Sortable from 'sortablejs'
-
+import store from '@/store'
 export default {
   name: 'DragTable',
   filters: {
@@ -79,9 +73,8 @@ export default {
   methods: {
     async getList() {
       this.listLoading = true
-      const { data } = await fetchList(this.listQuery)
-      this.list = data.items
-      this.total = data.total
+      const data = await fetchList(store.getters.token)
+      this.list = data.result
       this.listLoading = false
       this.oldList = this.list.map(v => v.id)
       this.newList = this.oldList.slice()
@@ -107,6 +100,9 @@ export default {
           this.newList.splice(evt.newIndex, 0, tempIndex)
         }
       })
+    },
+    handleScore(teacherName, courseName) {
+      this.$router.push({ path: '/score/index', query: { teacherName: teacherName, courseName: courseName }})
     }
   }
 }

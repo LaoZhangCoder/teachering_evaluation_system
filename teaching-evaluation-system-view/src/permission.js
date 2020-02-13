@@ -3,7 +3,7 @@ import store from './store'
 import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import { getToken } from '@/utils/auth' // get token from cookie
+import { getToken, getRoleToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
@@ -21,11 +21,11 @@ router.beforeEach(async(to, from, next) => {
   if (hasToken) {
     if (to.path === '/dashboard') {
       // if is logged in, redirect to the home page
-      if (store.state.user.name === '3') {
+      if (getRoleToken('roleName') === '3') {
         next({ path: '/admin/index' })
-      } else if (store.state.user.name === '2') {
+      } else if (getRoleToken('roleName') === '2') {
         next({ path: '/teacher/index' })
-      } else if (store.state.user.name === '1') {
+      } else if (getRoleToken('roleName') === '1') {
         next({ path: '/student/index' })
       } else {
         next()
@@ -33,13 +33,13 @@ router.beforeEach(async(to, from, next) => {
       }
     } else if (to.path === '/login') {
       // if is logged in, redirect to the home page
-      if (store.state.user.name === '3') {
+      if (getRoleToken('roleName') === '3') {
         next({ path: '/' })
       }
-      if (store.state.user.name === '2') {
+      if (getRoleToken('roleName') === '2') {
         next({ path: '/teacher/index' })
       }
-      if (store.state.user.name === '1') {
+      if (getRoleToken('roleName') === '1') {
         next({ path: '/student/index' })
       }
       NProgress.done()

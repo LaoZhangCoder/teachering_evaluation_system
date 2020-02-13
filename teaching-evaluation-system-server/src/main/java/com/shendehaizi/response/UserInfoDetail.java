@@ -2,10 +2,16 @@ package com.shendehaizi.response;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
-public class StudentInfo {
+public class UserInfoDetail {
+    private Long id;
+    private Date date;
+    private String userName;
     private String departmentName;
     private String majorName;
     private String className;
-    private Long classId;
+    private String roleName;
+
 }

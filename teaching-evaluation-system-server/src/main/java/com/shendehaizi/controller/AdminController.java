@@ -1,12 +1,10 @@
 package com.shendehaizi.controller;
 
-import com.shendehaizi.request.AdminAddRequest;
-import com.shendehaizi.request.AdminUpdateRequest;
-import com.shendehaizi.request.UserActivationRequest;
-import com.shendehaizi.request.UserActivationUpdateRequest;
+import com.shendehaizi.request.*;
 import com.shendehaizi.response.ActivationUserInfo;
 import com.shendehaizi.response.AdminInfo;
 import com.shendehaizi.response.Response;
+import com.shendehaizi.response.UserInfoDetail;
 import com.shendehaizi.service.AdminActivationService;
 import com.shendehaizi.service.UserActivationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +40,9 @@ public class AdminController {
     @GetMapping(value = "admin/delete/{id}")
     public Response<String>  deleteAdminInfo(@PathVariable("id") String id){
         return adminActivationService.deleteAdminInfo(id);
+    }
+    @GetMapping(value = "admin/userInfo/List}")
+    public Response<List<UserInfoDetail>>  deleteAdminInfo(UserInfoRequest request){
+
     }
 }

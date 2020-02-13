@@ -1,7 +1,7 @@
 <template>
   <div class="app-container documentation-container">
     <a class="document-btn" @click="addUser()">用户权限激活入口</a>
-    <a class="document-btn">用户信息查看入口</a>
+    <a class="document-btn"  @click="getUsers()">用户信息查看入口</a>
     <a class="document-btn" @click="addAdmin()" >管理员权限修改入口</a>
   </div>
 </template>
@@ -20,6 +20,9 @@ export default {
     },
     addAdmin() {
       this.$router.push('/admin/permission/index')
+    },
+    getUsers() {
+      this.$router.push('/admin/userInfo/index')
     }
   }
 }

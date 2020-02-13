@@ -2,23 +2,22 @@ package com.shendehaizi.service.impl;
 
 import com.google.common.collect.Maps;
 import com.shendehaizi.Exception.ServiceException;
-import com.shendehaizi.dao.ClassDao;
-import com.shendehaizi.dao.DeparmentDao;
-import com.shendehaizi.dao.MajorDao;
-import com.shendehaizi.dao.StudentDao;
-import com.shendehaizi.model.ClassModel;
-import com.shendehaizi.model.DepartmentModel;
-import com.shendehaizi.model.MajorModel;
-import com.shendehaizi.model.StudentModel;
+import com.shendehaizi.dao.*;
+import com.shendehaizi.model.*;
+import com.shendehaizi.request.ScoreTeacherInfo;
 import com.shendehaizi.request.StudentUpdateRequest;
 import com.shendehaizi.response.Response;
 import com.shendehaizi.response.StudentInfo;
+import com.shendehaizi.response.TeacherScoreInfo;
 import com.shendehaizi.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Slf4j
 public class StudentServiceImpl implements StudentService {
@@ -30,6 +29,12 @@ public class StudentServiceImpl implements StudentService {
     private MajorDao majorDao;
     @Autowired
     private ClassDao classDao;
+    @Autowired
+    private TeacherDao teacherDao;
+    @Autowired
+    private TeacherCourseRelationDao teacherCourseRelationDao;
+    @Autowired
+    private CourseDao courseDao;
     @Override
     public Response<StudentInfo> getStudentInfoDetail(String userId) {
         HashMap<String, Object> map = Maps.newHashMap();
@@ -50,6 +55,7 @@ public class StudentServiceImpl implements StudentService {
             map.put("id",studentModel.getClassId());
             ClassModel classModel = classDao.findByUniqueIndex(map);
             studentInfo.setClassName(classModel.getClassName());
+            studentInfo.setClassId(studentModel.getClassId());
         }
         response.setResult(studentInfo);
         return  response;
@@ -74,5 +80,33 @@ public class StudentServiceImpl implements StudentService {
         }
         log.error("学生信息更新失败!");
         throw new ServiceException("更新失败!");
+    }
+
+    @Override
+    public Response<List<TeacherScoreInfo>> getTeacherScoreInfos(ScoreTeacherInfo request) {
+        Response<List<TeacherScoreInfo>> listResponse = new Response<>();
+        HashMap<String, Object> map = Maps.newHashMap();
+        map.put("classId",request.getClassId());
+        List<TeacherCourseRelationModel> list = teacherCourseRelationDao.list(map);
+        if(list.isEmpty()){
+            listResponse.setResult(null);
+            return listResponse;
+        }
+        List<TeacherScoreInfo> scoreInfoList = list.stream().map(teacherCourseRelationModel -> {
+            TeacherScoreInfo teacherScoreInfo = new TeacherScoreInfo();
+            String userId = teacherCourseRelationModel.getUserId();
+            map.clear();
+            map.put("userId", userId);
+            TeacherModel t = teacherDao.findByUniqueIndex(map);
+            teacherScoreInfo.setTeacherId(t.getId());
+            teacherScoreInfo.setTeacherName(t.getTeacherName());
+            map.clear();
+            map.put("id", teacherCourseRelationModel.getCourseId());
+            CourseModel courseModel = courseDao.findByUniqueIndex(map);
+            teacherScoreInfo.setCourseName(courseModel.getCourseName());
+            return teacherScoreInfo;
+        }).collect(Collectors.toList());
+        listResponse.setResult(scoreInfoList);
+        return listResponse;
     }
 }

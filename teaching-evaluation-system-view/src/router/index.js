@@ -304,6 +304,30 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/score/',
+    component: Student,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/score/drag-table'),
+        name: '评分页面',
+        meta: { title: '评分页面', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/admin/userInfo',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/table/complex-table'),
+        name: '用户信息列表',
+        meta: { title: '用户信息列表', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',

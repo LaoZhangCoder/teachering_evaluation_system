@@ -1,5 +1,5 @@
 import { login, logout, getInfo, addDeparment } from '@/api/user'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken, setRoleToken, removeRoleToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 const state = {
   token: getToken(),
@@ -37,6 +37,7 @@ const actions = {
         commit('SET_TOKEN', data.result.token)
         setToken(data.result.token)
         commit('SET_NAME', data.result.roleId)
+        setRoleToken('roleName', data.result.roleId)
         resolve()
       }).catch(error => {
         reject(error)
@@ -86,7 +87,7 @@ const actions = {
         commit('SET_ROLES', [])
         removeToken()
         resetRouter()
-
+        removeRoleToken("roleName")
         // reset visited views and cached views
         // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
         dispatch('tagsView/delAllViews', null, { root: true })
