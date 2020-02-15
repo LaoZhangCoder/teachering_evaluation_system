@@ -7,7 +7,13 @@ export function fetchList(token) {
     params: { token }
   })
 }
-
+export function fetchUserList(query) {
+  return request({
+    url: '/admin/user',
+    method: 'get',
+    params: query
+  })
+}
 export function fetchArticle(id) {
   return request({
     url: '/article/detail',

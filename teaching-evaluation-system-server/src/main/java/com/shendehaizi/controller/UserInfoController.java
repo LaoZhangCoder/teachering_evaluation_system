@@ -7,6 +7,7 @@ import com.shendehaizi.response.UserInfo;
 import com.shendehaizi.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -19,6 +20,7 @@ public class UserInfoController {
 
     @RequestMapping(value = "/user/info")
     public Response getToken(String token) {
+        if(StringUtils.isEmpty(token)) return null;
         UserInfo userInfo = userInfoService.getUserInfo(token);
         Response<UserInfo> userInfoResponse = new Response<>();
         userInfoResponse.setCode(Code.SUCCESS.getStatus());

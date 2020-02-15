@@ -3,32 +3,44 @@ package com.shendehaizi.service.impl;
 import com.google.common.collect.Maps;
 import com.shendehaizi.Exception.ServiceException;
 import com.shendehaizi.dao.AdminDao;
+import com.shendehaizi.dao.StudentDao;
+import com.shendehaizi.dao.TeacherDao;
 import com.shendehaizi.model.*;
 import com.shendehaizi.model.AdminModel;
 import com.shendehaizi.model.AdminModel;
 import com.shendehaizi.model.AdminModel;
 import com.shendehaizi.request.AdminAddRequest;
 import com.shendehaizi.request.AdminUpdateRequest;
+import com.shendehaizi.request.UserInfoRequest;
+import com.shendehaizi.response.*;
 import com.shendehaizi.response.AdminInfo;
 import com.shendehaizi.response.AdminInfo;
-import com.shendehaizi.response.AdminInfo;
-import com.shendehaizi.response.Response;
 import com.shendehaizi.service.AdminActivationService;
 import io.terminus.common.model.Paging;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
 @Service
 @Slf4j
 public class AdminActivationServiceImpl implements AdminActivationService {
     @Autowired
     private AdminDao adminDao;
+
+    @Autowired
+    private StudentDao studentDao;
+
+    @Autowired
+    private TeacherDao teacherDao;
+
     @Override
     public Response<List<AdminInfo>> getAdminInfo() {
         Response<List<AdminInfo>> listResponse = new Response<>();
@@ -38,8 +50,8 @@ public class AdminActivationServiceImpl implements AdminActivationService {
         if (AdminModels != null) {
             List<AdminInfo> collect = AdminModels.stream().map(AdminModel -> {
                 AdminInfo AdminInfo = new AdminInfo();
-              AdminInfo.setAdminId(AdminModel.getAdminId());
-              AdminInfo.setAdminName(AdminModel.getAdminName());
+                AdminInfo.setAdminId(AdminModel.getAdminId());
+                AdminInfo.setAdminName(AdminModel.getAdminName());
                 return AdminInfo;
             }).collect(Collectors.toList());
             listResponse.setResult(collect);
@@ -115,9 +127,9 @@ public class AdminActivationServiceImpl implements AdminActivationService {
     @Override
     public Response<String> deleteAdminInfo(String id) {
         HashMap<String, Object> map = Maps.newHashMap();
-        map.put("adminId",id);
+        map.put("adminId", id);
         AdminModel AdminModel = adminDao.findByUniqueIndex(map);
-        if(AdminModel==null){
+        if (AdminModel == null) {
             log.error("删除的对象不存在！");
             throw new ServiceException("删除的对象不存在!");
         }
@@ -125,5 +137,49 @@ public class AdminActivationServiceImpl implements AdminActivationService {
         Response<String> response = new Response<>();
         response.setResult("删除成功!");
         return response;
+    }
+
+    @Override
+    public Response<List<UserInfoDetail>> getUserInfos(UserInfoRequest request) {
+        Response<List<UserInfoDetail>> listResponse = new Response<>();
+        List<StudentModel> studentModels = studentDao.listAll();
+        List<TeacherModel> teacherModels = teacherDao.listAll();
+        List<UserInfoDetail> studentList = studentModels.stream().map(studentModel -> {
+            UserInfoDetail userInfoDetail = new UserInfoDetail();
+            userInfoDetail.setDate(studentModel.getCreateDate());
+            userInfoDetail.setId(studentModel.getId());
+            userInfoDetail.setRoleName("学生");
+            userInfoDetail.setUserName(studentModel.getStudentName());
+            userInfoDetail.setUserId(studentModel.getUserId());
+            return userInfoDetail;
+        }).collect(Collectors.toList());
+        List<UserInfoDetail> teacherList = teacherModels.stream().map(teacherModel -> {
+            UserInfoDetail userInfoDetail = new UserInfoDetail();
+            userInfoDetail.setDate(teacherModel.getCreateDate());
+            userInfoDetail.setId(teacherModel.getId());
+            userInfoDetail.setRoleName("教师");
+            userInfoDetail.setUserName(teacherModel.getTeacherName());
+            userInfoDetail.setUserId(teacherModel.getUserId());
+            return userInfoDetail;
+        }).collect(Collectors.toList());
+        studentList.addAll(teacherList);
+        List<UserInfoDetail> collect = studentList;
+        collect = studentList.stream().filter(
+                filter(request)
+        ).skip((request.getPage() - 1) * request.getLimit()).limit(request.getLimit()).collect(Collectors.toList());
+        if (StringUtils.isEmpty(request.getUserName())) {
+            listResponse.setCount(Long.valueOf(studentList.size()));
+        } else {
+            listResponse.setCount(Long.valueOf(collect.size()));
+        }
+        listResponse.setResult(collect);
+        return listResponse;
+    }
+
+    private Predicate<UserInfoDetail> filter(UserInfoRequest request) {
+        return (UserInfoDetail userInfoDetail) -> {
+            if (StringUtils.isEmpty(request.getUserName())) return true;
+            return userInfoDetail.getUserName().equals(request.getUserName());
+        };
     }
 }
