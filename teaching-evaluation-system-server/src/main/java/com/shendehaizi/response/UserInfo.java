@@ -22,4 +22,6 @@ public class UserInfo {
      * 角色姓名
      */
     private String roleName;
+
+    private Long id;
 }

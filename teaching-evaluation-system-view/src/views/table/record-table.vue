@@ -35,6 +35,7 @@
 
 <script>
 import { getRecordList } from '@/api/article'
+import store from '@/store'
 export default {
   name: 'DragTable',
   filters: {
@@ -66,7 +67,7 @@ export default {
   },
   methods: {
     async getList() {
-      const data = await getRecordList()
+      const data = await getRecordList(store.getters.token)
       this.list = data.result
     }
   }

@@ -8,5 +8,5 @@ public class ScoreRequest {
     private String message;
     private Long courseId;
     private Long teacherId;
-    private Long studentId;
+    private String studentId;
 }

@@ -9,7 +9,7 @@ public class ScoreRecord {
     private Long id;
     private Long courseId;
     private Long teacherId;
-    private Long studentId;
+    private String studentId;
     private Long score;
     private String message;
     private Date createDate;

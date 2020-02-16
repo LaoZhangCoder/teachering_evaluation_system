@@ -9,6 +9,7 @@ import com.shendehaizi.request.TeacherUpdateRequest;
 import com.shendehaizi.response.CourseInfo;
 import com.shendehaizi.response.Response;
 import com.shendehaizi.response.TeacherCourseInfo;
+import com.shendehaizi.response.TeacherScoreRecord;
 import com.shendehaizi.service.TeacherService;
 import io.terminus.common.model.Paging;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +43,9 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
     private CourseDao courseDao;
+
+    @Autowired
+    private ScoreRecordDao scoreRecordDao;
 
     @Override
     public Response<String> handleUpdateInfo(TeacherUpdateRequest request) {
@@ -131,6 +135,34 @@ public class TeacherServiceImpl implements TeacherService {
         listResponse.setCount(paging.getTotal());
         if (!paging.getData().isEmpty()) {
             List<TeacherCourseInfo> collect = paging.getData().stream().map(getTeacherCourseInfos(map)).collect(Collectors.toList());
+            listResponse.setResult(collect);
+        }
+        return listResponse;
+    }
+
+    @Override
+    public Response<List<TeacherScoreRecord>> getPageTeacherScoreRecords(Integer currentPage, int pageSize, Long teacherId) {
+        int offset = (currentPage - 1) * pageSize;
+        HashMap<String, Object> map = Maps.newHashMap();
+        map.put("teacherId",teacherId);
+        Paging<ScoreRecord> paging1 = scoreRecordDao.paging(offset, pageSize,map);
+        Response<List<TeacherScoreRecord>> listResponse = new Response<>();
+        listResponse.setCount(paging1.getTotal());
+        if (!paging1.getData().isEmpty()) {
+            List<TeacherScoreRecord> collect = paging1.getData().stream().map(scoreRecord -> {
+                TeacherScoreRecord teacherScoreRecord = new TeacherScoreRecord();
+                teacherScoreRecord.setId(scoreRecord.getId());
+                map.clear();
+                map.put("id", scoreRecord.getCourseId());
+                CourseModel courseModel = courseDao.findByUniqueIndex(map);
+                if (courseModel != null) {
+                    teacherScoreRecord.setCourseName(courseModel.getCourseName());
+                }
+                teacherScoreRecord.setDate(scoreRecord.getCreateDate());
+                teacherScoreRecord.setMessage(scoreRecord.getMessage());
+                teacherScoreRecord.setScore(scoreRecord.getScore());
+                return teacherScoreRecord;
+            }).collect(Collectors.toList());
             listResponse.setResult(collect);
         }
         return listResponse;

@@ -19,5 +19,5 @@ public interface StudentService {
 
     Response<String> handleScore(ScoreRequest scoreRequest);
 
-    Response<List<StudentScoreRecord>> getScoreRecords();
+    Response<List<StudentScoreRecord>> getScoreRecords(String userId);
 }

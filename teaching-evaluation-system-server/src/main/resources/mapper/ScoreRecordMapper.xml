@@ -5,7 +5,7 @@
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="course_id" property="courseId" jdbcType="BIGINT"/>
         <result column="teacher_id" property="teacherId" jdbcType="BIGINT"/>
-        <result column="student_id" property="studentId" jdbcType="BIGINT"/>
+        <result column="student_id" property="studentId" jdbcType="VARCHAR"/>
         <result column="score" property="score" jdbcType="BIGINT"></result>
         <result column="message" property="message" jdbcType="CLOB"/>
         <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
@@ -76,7 +76,7 @@
                 #{teacherId,jdbcType=BIGINT},
             </if>
             <if test="studentId != null">
-                #{studentId,jdbcType=BIGINT},
+                #{studentId,jdbcType=VARCHAR},
             </if>
             <if test="score != null">
                 #{score,jdbcType=BIGINT},

@@ -90,6 +90,7 @@ public class UserInfoServiceImpl implements UserInfoService {
                 userInfo.setRoleName(roleInfo.getRoleName());
                 userInfo.setUserId(teacherModel.getUserId());
                 userInfo.setUserName(teacherModel.getTeacherName());
+                userInfo.setId(teacherModel.getId());
             }
             return userInfo;
         }

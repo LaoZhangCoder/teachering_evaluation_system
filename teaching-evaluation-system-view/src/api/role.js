@@ -25,6 +25,13 @@ export function getTeacherCourses(userId) {
     method: 'get'
   })
 }
+export function getTeacherScoreRecord(currentPage, userId) {
+  return request({
+    url: '/teacher/score/record',
+    method: 'get',
+    params: { currentPage, userId }
+  })
+}
 export function getAdmins() {
   return request({
     url: '/admin/list',

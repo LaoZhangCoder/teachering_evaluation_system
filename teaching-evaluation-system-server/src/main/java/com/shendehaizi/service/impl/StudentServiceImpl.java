@@ -144,15 +144,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Response<List<StudentScoreRecord>> getScoreRecords() {
+    public Response<List<StudentScoreRecord>> getScoreRecords(String userId) {
         Response<List<StudentScoreRecord>> listResponse = new Response<>();
-        List<ScoreRecord> scoreRecords = scoreRecordDao.listAll();
+        HashMap<String, Object> map = Maps.newHashMap();
+        map.put("studentId",userId);
+        List<ScoreRecord> scoreRecords = scoreRecordDao.list(map);
         List<StudentScoreRecord> collect = scoreRecords.stream().map(scoreRecord -> {
             StudentScoreRecord studentScoreRecord = new StudentScoreRecord();
             studentScoreRecord.setDate(scoreRecord.getCreateDate());
             studentScoreRecord.setId(scoreRecord.getId());
             studentScoreRecord.setMessage(scoreRecord.getMessage());
-            HashMap<String, Object> map = Maps.newHashMap();
+            map.clear();
             map.put("id", scoreRecord.getTeacherId());
             TeacherModel teacherModel = teacherDao.findByUniqueIndex(map);
             if (teacherModel != null) {

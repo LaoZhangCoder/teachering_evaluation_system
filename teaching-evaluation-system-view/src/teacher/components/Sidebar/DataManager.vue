@@ -25,13 +25,24 @@ export default {
           label: '进行选课'
         }
         ]
-      }]
+      },
+      {
+        label: '评教管理',
+        children: [{
+          label: '评教记录'
+        }
+        ]
+      }
+      ]
     }
   },
   methods: {
     handleNodeClick: function(dropNode) {
       if (dropNode.label === '进行选课') {
         this.$router.push('/teacher/course/index')
+      }
+      if (dropNode.label === '评教记录') {
+        this.$router.push('/teacher/score/record')
       }
     }
   }

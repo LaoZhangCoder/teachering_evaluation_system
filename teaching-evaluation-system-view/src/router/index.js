@@ -268,6 +268,20 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/teacher/score',
+
+    // 你可以选择不同的layout组件
+    component: Teacher,
+
+    // 这里开始对应的路由都会显示在app-main中 如上图所示
+    children: [{
+      path: 'record',
+      component: () => import('@/views/teacher-course/course/record'),
+      name: '进行选课',
+      meta: { title: '进行选课', icon: 'dashboard', affix: true }
+    }]
+  },
+  {
     path: '/student/index',
     component: Student,
     children: [

@@ -2,10 +2,7 @@ package com.shendehaizi.controller;
 
 import com.shendehaizi.request.TeacherCourseAddRequest;
 import com.shendehaizi.request.TeacherUpdateRequest;
-import com.shendehaizi.response.CourseInfo;
-import com.shendehaizi.response.Response;
-import com.shendehaizi.response.TeacherCourseInfo;
-import com.shendehaizi.response.UserInfo;
+import com.shendehaizi.response.*;
 import com.shendehaizi.service.TeacherService;
 import com.shendehaizi.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +41,11 @@ public class TeacherController {
     public Response<List<TeacherCourseInfo>> getPagingTeacherCourserInfo(Integer currentPage,String userId) {
         UserInfo userInfo = userInfoService.getUserInfo(userId);
         return teacherService.getPagingTeacherCourserInfo(currentPage, 8,userInfo.getUserId());
+    }
+
+    @GetMapping(value = "teacher/score/record")
+    public Response<List<TeacherScoreRecord>> getPageTeacherScoreRecords(Integer currentPage,String userId){
+        UserInfo userInfo = userInfoService.getUserInfo(userId);
+        return teacherService.getPageTeacherScoreRecords(currentPage,8,userInfo.getId());
     }
 }

@@ -76,7 +76,7 @@ public class StudentController {
        scoreRequest.setCountScore(request.getCountScore());
        scoreRequest.setMessage(request.getMessage());
        scoreRequest.setTeacherId(Long.valueOf(request.getTeacherId()));
-       scoreRequest.setStudentId(Long.valueOf(userInfo.getUserId()));
+       scoreRequest.setStudentId(userInfo.getUserId());
         HashMap<String, Object> map = Maps.newHashMap();
         map.put("courseName",request.getCourseId());
         CourseModel courseModel = courseDao.findByUniqueIndex(map);
@@ -84,8 +84,9 @@ public class StudentController {
         return studentService.handleScore(scoreRequest);
     }
     @GetMapping(value = "/student/score/list")
-    public Response<List<StudentScoreRecord>> getScoreRecords(){
-        return  studentService.getScoreRecords();
+    public Response<List<StudentScoreRecord>> getScoreRecords(String userId){
+        UserInfo userInfo = userInfoService.getUserInfo(userId);
+        return  studentService.getScoreRecords(userInfo.getUserId());
     }
 
 }
