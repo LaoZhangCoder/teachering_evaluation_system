@@ -21,9 +21,13 @@ export default {
     return {
       data: [{
         label: '课程评教',
-        children: [{
-          label: '进行评教'
-        }
+        children: [
+          {
+            label: '评教记录'
+          },
+          {
+            label: '进行评教'
+          }
         ]
       }]
     }
@@ -32,6 +36,9 @@ export default {
     handleNodeClick: function(dropNode) {
       if (dropNode.label === '进行评教') {
         this.$router.push('/student/score')
+      }
+      if (dropNode.label === '评教记录') {
+        this.$router.push('/student/score/record')
       }
     }
   }

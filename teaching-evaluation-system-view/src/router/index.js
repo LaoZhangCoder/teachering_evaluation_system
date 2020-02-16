@@ -304,6 +304,18 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/student/score',
+    component: Student,
+    children: [
+      {
+        path: 'record',
+        component: () => import('@/views/table/record-table'),
+        name: '评教记录',
+        meta: { title: '评教记录', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
     path: '/score/',
     component: Student,
     children: [

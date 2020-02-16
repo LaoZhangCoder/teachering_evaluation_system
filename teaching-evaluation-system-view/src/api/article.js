@@ -7,6 +7,20 @@ export function fetchList(token) {
     params: { token }
   })
 }
+
+export function getRecordList() {
+  return request({
+    url: '/student/score/list',
+    method: 'get'
+  })
+}
+export function startScore(data) {
+  return request({
+    url: '/student/start/score',
+    method: 'post',
+    data
+  })
+}
 export function fetchUserList(query) {
   return request({
     url: '/admin/user',

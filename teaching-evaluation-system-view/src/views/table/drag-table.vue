@@ -22,13 +22,13 @@
       <el-table-column label="Status" class-name="status-col" width="100">
         <template slot-scope="{row}">
           <el-tag :type="row.status | statusFilter">
-            已评教
+            {{ row.status }}
           </el-tag>
         </template>
       </el-table-column>
       <el-table-column width="110px" align="center" label="进行评分">
         <template slot-scope="{row}">
-          <el-button size="mini" type="danger" @click="handleScore(row.teacherName,row.courseName)">
+          <el-button size="mini" type="danger" @click="handleScore(row.teacherName,row.courseName,row.teacherId)">
             评分
           </el-button>
         </template>
@@ -101,8 +101,8 @@ export default {
         }
       })
     },
-    handleScore(teacherName, courseName) {
-      this.$router.push({ path: '/score/index', query: { teacherName: teacherName, courseName: courseName }})
+    handleScore(teacherName, courseName, teacherId) {
+      this.$router.push({ path: '/score/index', query: { teacherName: teacherName, courseName: courseName, teacherId: teacherId }})
     }
   }
 }

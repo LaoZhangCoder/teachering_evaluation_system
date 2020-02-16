@@ -15,6 +15,7 @@
     <sql id="table_name">teacher</sql>
     <sql id="criteria">
         <where>
+            <if test="id != null">AND `id` = #{id}</if>
             <if test="teacherName != null"> AND `teacher_name`=#{teacherName}</if>
             <if test="userId != null"> AND `user_id`=#{userId}</if>
         </where>

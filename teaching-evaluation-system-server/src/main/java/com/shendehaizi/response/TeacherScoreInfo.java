@@ -10,4 +10,6 @@ public class TeacherScoreInfo {
     public String teacherName;
 
     public String courseName;
+
+    private String status;
 }
