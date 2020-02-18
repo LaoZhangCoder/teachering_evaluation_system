@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CourseDao extends MyBatisDao<CourseModel> {
+    public Long getCount(){
+        return this.sqlSession.selectOne(sqlId("count"));
+    }
 }

@@ -48,4 +48,9 @@ public class TeacherController {
         UserInfo userInfo = userInfoService.getUserInfo(userId);
         return teacherService.getPageTeacherScoreRecords(currentPage,8,userInfo.getId());
     }
+    @GetMapping(value = "teacher/score/countList")
+    public Response<List<ScoreCourseInfo>> getScoreCountList(String token){
+        UserInfo userInfo = userInfoService.getUserInfo(token);
+        return teacherService.getScoreCountList(userInfo.getId());
+    }
 }

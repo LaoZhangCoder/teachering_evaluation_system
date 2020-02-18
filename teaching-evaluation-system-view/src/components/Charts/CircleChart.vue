@@ -5,7 +5,7 @@
 <script>
 import echarts from 'echarts'
 import resize from './mixins/resize'
-
+import { queryProcessData } from '@/api/user'
 export default {
   mixins: [resize],
   props: {
@@ -28,26 +28,14 @@ export default {
   },
   data() {
     return {
-      chart: null
-    }
-  },
-  mounted() {
-    this.initChart()
-  },
-  beforeDestroy() {
-    if (!this.chart) {
-      return
-    }
-    this.chart.dispose()
-    this.chart = null
-  },
-  methods: {
-    initChart() {
-      this.chart = echarts.init(document.getElementById(this.id))
-
-      this.chart.setOption({
+      chart: null,
+      process: {
+        complete: 0,
+        unComplete: 0
+      },
+      dataObject: {
         title: {
-          text: '学生完成情况80%',
+          text: '',
           x: 'center',
           y: 'center',
           textStyle: {
@@ -63,7 +51,7 @@ export default {
           data: ['已完成', '未完成']
         },
 
-        series: [{
+        series: {
           name: 'Line 1',
           type: 'pie',
           clockWise: true,
@@ -105,8 +93,33 @@ export default {
             name: '未完成',
             value: 20
           }]
-        }]
-      })
+        }
+      }
+    }
+  },
+  mounted() {
+    this.initChart()
+  },
+  beforeDestroy() {
+    if (!this.chart) {
+      return
+    }
+    this.chart.dispose()
+    this.chart = null
+  },
+  created() {
+    queryProcessData().then(response => {
+      this.process.complete = response.result.complete
+      this.process.unComplete = response.result.unComplete
+      this.dataObject.series.data[0].value = this.process.complete
+      this.dataObject.title.text = '学生评教进度完成' + this.dataObject.series.data[0].value + '%'
+      this.dataObject.series.data[1].value = this.process.unComplete
+      this.chart = echarts.init(document.getElementById(this.id))
+      this.chart.setOption(this.dataObject)
+    })
+  },
+  methods: {
+    initChart() {
     }
   }
 }

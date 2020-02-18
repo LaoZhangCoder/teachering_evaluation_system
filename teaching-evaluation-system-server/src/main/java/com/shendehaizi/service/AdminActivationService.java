@@ -4,9 +4,7 @@ package com.shendehaizi.service;
 import com.shendehaizi.request.AdminAddRequest;
 import com.shendehaizi.request.AdminUpdateRequest;
 import com.shendehaizi.request.UserInfoRequest;
-import com.shendehaizi.response.AdminInfo;
-import com.shendehaizi.response.Response;
-import com.shendehaizi.response.UserInfoDetail;
+import com.shendehaizi.response.*;
 
 import java.util.List;
 
@@ -23,4 +21,8 @@ public interface AdminActivationService {
     Response<String> deleteAdminInfo(String id);
 
     Response<List<UserInfoDetail>> getUserInfos(UserInfoRequest request);
+
+    Response<CountInfo> getCountInfos();
+
+    Response<ProcessInfo> getProcessInfo();
 }

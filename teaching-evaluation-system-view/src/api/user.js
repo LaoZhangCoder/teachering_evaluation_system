@@ -150,3 +150,15 @@ export function logout() {
     method: 'get'
   })
 }
+export function queryDataCount() {
+  return request({
+    url: '/admin/count',
+    method: 'get'
+  })
+}
+export function queryProcessData() {
+  return request({
+    url: '/admin/process',
+    method: 'get'
+  })
+}

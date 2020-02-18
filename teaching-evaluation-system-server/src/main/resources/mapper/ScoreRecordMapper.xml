@@ -11,6 +11,10 @@
         <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
         <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
     </resultMap>
+    <resultMap id="BaseResult" type="ScoreCourseModel">
+        <result column="course_id" property="courseId" jdbcType="BIGINT"/>
+        <result column="count_score" property="countScore" jdbcType="BIGINT"/>
+    </resultMap>
     <sql id="Base_Column_List">
         id, course_id,teacher_id, student_id,score,message, create_date,update_date
     </sql>
@@ -102,5 +106,10 @@
     <select id="count" resultType="long">
         select count(*) from <include refid="table_name"/>
         <include refid="criteria"/>
+    </select>
+    <select id="listCountScore" parameterType="long" resultMap="BaseResult">
+   SELECT SUM(score)count_score,course_id,teacher_id FROM score_record GROUP BY teacher_id ,course_id
+   having
+   teacher_id=#{teacherId}
     </select>
 </mapper>

@@ -1,9 +1,7 @@
 package com.shendehaizi.controller;
 
 import com.shendehaizi.request.*;
-import com.shendehaizi.response.AdminInfo;
-import com.shendehaizi.response.Response;
-import com.shendehaizi.response.UserInfoDetail;
+import com.shendehaizi.response.*;
 import com.shendehaizi.service.AdminActivationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,5 +42,14 @@ public class AdminController {
     @GetMapping(value = "admin/user")
     public Response<List<UserInfoDetail>> getUserInfoList(UserInfoRequest request) {
         return adminActivationService.getUserInfos(request);
+    }
+    @GetMapping(value = "admin/count")
+    public Response<CountInfo> getCountInfos(){
+        return adminActivationService.getCountInfos();
+    }
+
+    @GetMapping(value = "admin/process")
+    public Response<ProcessInfo> getProcessInfo(){
+        return adminActivationService.getProcessInfo();
     }
 }

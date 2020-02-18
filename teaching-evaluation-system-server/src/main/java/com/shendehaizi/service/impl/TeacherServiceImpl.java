@@ -6,10 +6,7 @@ import com.shendehaizi.dao.*;
 import com.shendehaizi.model.*;
 import com.shendehaizi.request.TeacherCourseAddRequest;
 import com.shendehaizi.request.TeacherUpdateRequest;
-import com.shendehaizi.response.CourseInfo;
-import com.shendehaizi.response.Response;
-import com.shendehaizi.response.TeacherCourseInfo;
-import com.shendehaizi.response.TeacherScoreRecord;
+import com.shendehaizi.response.*;
 import com.shendehaizi.service.TeacherService;
 import io.terminus.common.model.Paging;
 import lombok.extern.slf4j.Slf4j;
@@ -165,6 +162,25 @@ public class TeacherServiceImpl implements TeacherService {
             }).collect(Collectors.toList());
             listResponse.setResult(collect);
         }
+        return listResponse;
+    }
+
+    @Override
+    public Response<List<ScoreCourseInfo>> getScoreCountList(Long id) {
+        Response<List<ScoreCourseInfo>> listResponse = new Response<>();
+        List<ScoreCourseModel> scoreCount = scoreRecordDao.getScoreCount(id);
+        if(scoreCount.isEmpty()) return listResponse;
+        List<ScoreCourseInfo> scoreCourseInfos = scoreCount.stream().map(scoreCourseModel -> {
+            ScoreCourseInfo scoreCourseInfo = new ScoreCourseInfo();
+            scoreCourseInfo.setId(scoreCourseModel.getCourseId());
+            scoreCourseInfo.setCountScore(scoreCourseModel.getCountScore());
+            HashMap<String, Object> map = Maps.newHashMap();
+            map.put("id", scoreCourseModel.getCourseId());
+            CourseModel courseModel = courseDao.findByUniqueIndex(map);
+            scoreCourseInfo.setCourseName(courseModel.getCourseName());
+            return scoreCourseInfo;
+        }).collect(Collectors.toList());
+        listResponse.setResult(scoreCourseInfos);
         return listResponse;
     }
 

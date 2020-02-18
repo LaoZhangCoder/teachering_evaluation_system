@@ -8,10 +8,10 @@ export function searchUser(name) {
   })
 }
 
-export function transactionList(query) {
+export function transactionList(token) {
   return request({
-    url: '/transaction/list',
+    url: '/teacher/score/countList',
     method: 'get',
-    params: query
+    params: { token }
   })
 }

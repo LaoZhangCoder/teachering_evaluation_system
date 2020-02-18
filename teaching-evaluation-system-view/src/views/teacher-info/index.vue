@@ -16,7 +16,9 @@
             </el-tabs>
           </el-card>
         </el-col>
-
+        <el-col :xs="{span: 24}" :sm="{span: 24}" :md="{span: 24}" :lg="{span: 12}" :xl="{span: 12}" style="padding-right:80px;margin-bottom:30px;">
+          <transaction-table></transaction-table>
+        </el-col>
       </el-row>
     </div>
   </div>
@@ -26,10 +28,10 @@
 import { mapGetters } from 'vuex'
 import UserCard from './components/UserCard'
 import Account from './components/Account'
-
+import TransactionTable from './components/TransactionTable'
 export default {
   name: 'Profile',
-  components: { UserCard, Account },
+  components: { UserCard, Account, TransactionTable },
   data() {
     return {
       user: {},

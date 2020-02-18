@@ -2,9 +2,7 @@ package com.shendehaizi.service.impl;
 
 import com.google.common.collect.Maps;
 import com.shendehaizi.Exception.ServiceException;
-import com.shendehaizi.dao.AdminDao;
-import com.shendehaizi.dao.StudentDao;
-import com.shendehaizi.dao.TeacherDao;
+import com.shendehaizi.dao.*;
 import com.shendehaizi.model.*;
 import com.shendehaizi.model.AdminModel;
 import com.shendehaizi.model.AdminModel;
@@ -18,6 +16,7 @@ import com.shendehaizi.response.AdminInfo;
 import com.shendehaizi.service.AdminActivationService;
 import io.terminus.common.model.Paging;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -40,6 +39,18 @@ public class AdminActivationServiceImpl implements AdminActivationService {
 
     @Autowired
     private TeacherDao teacherDao;
+
+    @Autowired
+    private CourseDao courseDao;
+
+    @Autowired
+    private ClassDao classDao;
+
+    @Autowired
+    private ScoreRecordDao scoreRecordDao;
+
+    @Autowired
+    private TeacherCourseRelationDao teacherCourseRelationDao;
 
     @Override
     public Response<List<AdminInfo>> getAdminInfo() {
@@ -174,6 +185,44 @@ public class AdminActivationServiceImpl implements AdminActivationService {
         }
         listResponse.setResult(collect);
         return listResponse;
+    }
+
+    @Override
+    public Response<CountInfo> getCountInfos() {
+        Response<CountInfo> countInfoResponse = new Response<>();
+        Long studentCount = studentDao.getCount();
+        Long classCount = classDao.getCount();
+        Long teacherCount = teacherDao.getCount();
+        Long courseCount = courseDao.getCount();
+        CountInfo countInfo = new CountInfo();
+        countInfo.setStudentCount(studentCount);
+        countInfo.setClassCount(classCount);
+        countInfo.setTeacherCount(teacherCount);
+        countInfo.setCourseCount(courseCount);
+        countInfoResponse.setResult(countInfo);
+        return countInfoResponse;
+    }
+
+    @Override
+    public Response<ProcessInfo> getProcessInfo() {
+        Response<ProcessInfo> processInfoResponse = new Response<>();
+        //应该评教的总条数
+        double count=0l;
+        List<StudentModel> studentModels = studentDao.listAll();
+        HashMap<String, Object> map = Maps.newHashMap();
+        for (StudentModel studentModel : studentModels) {
+            map.put("classId", studentModel.getClassId());
+            List<TeacherCourseRelationModel> list = teacherCourseRelationDao.list(map);
+            count = count + list.size();
+        }
+        //已评教的记录数
+        double count1 = scoreRecordDao.getCount();
+
+        ProcessInfo processInfo = new ProcessInfo();
+        processInfo.setComplete(Integer.valueOf(String.valueOf(count1/count*100).substring(0,2)));
+        processInfo.setUnComplete(Integer.valueOf(String.valueOf((count-count1)/count*100).substring(0,2)));
+        processInfoResponse.setResult(processInfo);
+        return  processInfoResponse;
     }
 
     private Predicate<UserInfoDetail> filter(UserInfoRequest request) {

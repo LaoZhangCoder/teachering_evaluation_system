@@ -93,4 +93,8 @@
             </if>
         </trim>
     </insert>
+    <select id="count" resultType="long">
+        select count(*) from <include refid="table_name"/>
+        <include refid="criteria"/>
+    </select>
 </mapper>

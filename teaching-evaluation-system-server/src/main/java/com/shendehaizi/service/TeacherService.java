@@ -3,6 +3,7 @@ package com.shendehaizi.service;
 import com.shendehaizi.request.TeacherCourseAddRequest;
 import com.shendehaizi.request.TeacherUpdateRequest;
 import com.shendehaizi.response.Response;
+import com.shendehaizi.response.ScoreCourseInfo;
 import com.shendehaizi.response.TeacherCourseInfo;
 import com.shendehaizi.response.TeacherScoreRecord;
 
@@ -21,4 +22,5 @@ public interface TeacherService {
 
     Response<List<TeacherScoreRecord>> getPageTeacherScoreRecords(Integer currentPage, int i,Long teacherId);
 
+    Response<List<ScoreCourseInfo>> getScoreCountList(Long id);
 }
