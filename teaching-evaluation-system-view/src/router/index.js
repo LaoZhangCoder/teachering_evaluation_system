@@ -82,7 +82,7 @@ export const constantRoutes = [
       path: 'index',
       component: () => import('@/views/documentation/index'),
       name: '院系管理',
-      meta: { title: '院系管理', icon: 'dashboard', affix: true }
+      meta: { title: '院系管理', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -96,7 +96,7 @@ export const constantRoutes = [
       path: 'index',
       component: () => import('@/views/major/index'),
       name: '专业管理',
-      meta: { title: '专业管理', icon: 'dashboard', affix: true }
+      meta: { title: '专业管理', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -110,7 +110,7 @@ export const constantRoutes = [
       path: 'index',
       component: () => import('@/views/profile/index'),
       name: '个人信息',
-      meta: { title: '个人信息', icon: 'dashboard', affix: true }
+      meta: { title: '个人信息', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -124,7 +124,7 @@ export const constantRoutes = [
       path: 'index',
       component: () => import('@/views/teacher-info/index'),
       name: '个人信息',
-      meta: { title: '个人信息', icon: 'dashboard', affix: true }
+      meta: { title: '个人信息', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -138,7 +138,7 @@ export const constantRoutes = [
       path: 'index',
       component: () => import('@/views/class/index'),
       name: '班级管理',
-      meta: { title: '班级管理', icon: 'dashboard', affix: true }
+      meta: { title: '班级管理', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -152,7 +152,7 @@ export const constantRoutes = [
       path: 'add',
       component: () => import('@/views/major/add'),
       name: '添加专业',
-      meta: { title: '添加专业', icon: 'dashboard', affix: true }
+      meta: { title: '添加专业', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -166,7 +166,7 @@ export const constantRoutes = [
       path: 'add',
       component: () => import('@/views/class/add'),
       name: '添加班级',
-      meta: { title: '添加班级', icon: 'dashboard', affix: true }
+      meta: { title: '添加班级', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -180,7 +180,7 @@ export const constantRoutes = [
       path: 'update',
       component: () => import('@/views/major/update'),
       name: '修改专业信息',
-      meta: { title: '修改专业信息', icon: 'dashboard', affix: true }
+      meta: { title: '修改专业信息', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -194,7 +194,7 @@ export const constantRoutes = [
       path: 'update',
       component: () => import('@/views/class/update'),
       name: '修改班级信息',
-      meta: { title: '修改班级信息', icon: 'dashboard', affix: true }
+      meta: { title: '修改班级信息', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -208,7 +208,7 @@ export const constantRoutes = [
       path: 'index',
       component: () => import('@/views/user/index'),
       name: '用户管理',
-      meta: { title: '用户管理', icon: 'dashboard', affix: true }
+      meta: { title: '用户管理', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -222,7 +222,7 @@ export const constantRoutes = [
       path: 'index',
       component: () => import('@/views/admin/permission/index'),
       name: '添加管理员',
-      meta: { title: '添加管理员', icon: 'dashboard', affix: true }
+      meta: { title: '添加管理员', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -236,7 +236,7 @@ export const constantRoutes = [
       path: 'index',
       component: () => import('@/views/user/permission/index'),
       name: '激活用户',
-      meta: { title: '激活用户', icon: 'dashboard', affix: true }
+      meta: { title: '激活用户', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -250,7 +250,21 @@ export const constantRoutes = [
       path: 'index',
       component: () => import('@/views/course/permission/index'),
       name: '添加课程',
-      meta: { title: '添加课程', icon: 'dashboard', affix: true }
+      meta: { title: '添加课程', icon: 'dashboard', affix: true, noCache: true }
+    }]
+  },
+  {
+    path: '/currentScore',
+
+    // 你可以选择不同的layout组件
+    component: Layout,
+
+    // 这里开始对应的路由都会显示在app-main中 如上图所示
+    children: [{
+      path: 'index',
+      component: () => import('@/views/table/score'),
+      name: '评教得分列表',
+      meta: { title: '评教得分列表', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -264,7 +278,7 @@ export const constantRoutes = [
       path: 'index',
       component: () => import('@/views/teacher-course/course/index'),
       name: '进行选课',
-      meta: { title: '进行选课', icon: 'dashboard', affix: true }
+      meta: { title: '进行选课', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -278,7 +292,7 @@ export const constantRoutes = [
       path: 'record',
       component: () => import('@/views/teacher-course/course/record'),
       name: '进行选课',
-      meta: { title: '进行选课', icon: 'dashboard', affix: true }
+      meta: { title: '进行选课', icon: 'dashboard', affix: true, noCache: true }
     }]
   },
   {
@@ -289,7 +303,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/student/index'),
         name: '首页',
-        meta: { title: '首页', icon: 'dashboard', affix: true }
+        meta: { title: '首页', icon: 'dashboard', affix: true, noCache: true }
       }
     ]
   },
@@ -301,7 +315,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/teacher/index'),
         name: '首页',
-        meta: { title: '首页', icon: 'dashboard', affix: true }
+        meta: { title: '首页', icon: 'dashboard', affix: true, noCache: true }
       }
     ]
   },
@@ -313,7 +327,7 @@ export const constantRoutes = [
         path: 'score',
         component: () => import('@/views/table/drag-table'),
         name: '评分教师列表',
-        meta: { title: '评分列表', icon: 'dashboard', affix: true }
+        meta: { title: '评分列表', icon: 'dashboard', affix: true, noCache: true }
       }
     ]
   },
@@ -325,7 +339,7 @@ export const constantRoutes = [
         path: 'record',
         component: () => import('@/views/table/record-table'),
         name: '评教记录',
-        meta: { title: '评教记录', icon: 'dashboard', affix: true }
+        meta: { title: '评教记录', icon: 'dashboard', affix: true, noCache: true }
       }
     ]
   },
@@ -337,7 +351,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/score/drag-table'),
         name: '评分页面',
-        meta: { title: '评分页面', icon: 'dashboard', affix: true }
+        meta: { title: '评分页面', icon: 'dashboard', affix: true, noCache: true }
       }
     ]
   },
@@ -349,7 +363,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/table/complex-table'),
         name: '用户信息列表',
-        meta: { title: '用户信息列表', icon: 'dashboard', affix: true }
+        meta: { title: '用户信息列表', icon: 'dashboard', affix: true, noCache: true }
       }
     ]
   },
@@ -362,7 +376,7 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/admin/index'),
         name: '首页',
-        meta: { title: '首页', icon: 'dashboard', affix: true }
+        meta: { title: '首页', icon: 'dashboard', affix: true, noCache: true }
       }
     ]
   },
@@ -374,7 +388,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/admin/index'),
         name: '首页',
-        meta: { title: '首页', icon: 'dashboard', affix: true }
+        meta: { title: '首页', icon: 'dashboard', affix: true, noCache: true }
       }
     ]
   },

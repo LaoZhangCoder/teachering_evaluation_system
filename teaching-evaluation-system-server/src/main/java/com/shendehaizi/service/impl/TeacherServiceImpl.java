@@ -161,6 +161,8 @@ public class TeacherServiceImpl implements TeacherService {
                 return teacherScoreRecord;
             }).collect(Collectors.toList());
             listResponse.setResult(collect);
+        }else{
+            listResponse.setResult(null);
         }
         return listResponse;
     }
@@ -169,6 +171,7 @@ public class TeacherServiceImpl implements TeacherService {
     public Response<List<ScoreCourseInfo>> getScoreCountList(Long id) {
         Response<List<ScoreCourseInfo>> listResponse = new Response<>();
         List<ScoreCourseModel> scoreCount = scoreRecordDao.getScoreCount(id);
+        listResponse.setResult(null);
         if(scoreCount.isEmpty()) return listResponse;
         List<ScoreCourseInfo> scoreCourseInfos = scoreCount.stream().map(scoreCourseModel -> {
             ScoreCourseInfo scoreCourseInfo = new ScoreCourseInfo();

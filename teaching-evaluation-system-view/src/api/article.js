@@ -8,6 +8,13 @@ export function fetchList(token) {
   })
 }
 
+export function fetchScore(query) {
+  return request({
+    url: '/admin/score',
+    method: 'get',
+    params: query
+  })
+}
 export function getRecordList(userId) {
   return request({
     url: '/student/score/list',

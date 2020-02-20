@@ -2,6 +2,7 @@ package com.shendehaizi.dao;
 
 import com.shendehaizi.model.ScoreCourseModel;
 import com.shendehaizi.model.ScoreRecord;
+import com.shendehaizi.model.ScoreInfo;
 import io.terminus.common.mysql.dao.MyBatisDao;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +15,8 @@ public class ScoreRecordDao extends MyBatisDao<ScoreRecord> {
     }
     public Long getCount(){
         return this.sqlSession.selectOne(sqlId("count"));
+    }
+    public List<ScoreInfo> getScoreInfoList(){
+        return this.sqlSession.selectList(sqlId("scoreList"));
     }
 }

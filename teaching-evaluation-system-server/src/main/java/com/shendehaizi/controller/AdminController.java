@@ -52,4 +52,9 @@ public class AdminController {
     public Response<ProcessInfo> getProcessInfo(){
         return adminActivationService.getProcessInfo();
     }
+
+    @GetMapping(value = "admin/score")
+    public Response<List<TeacherScore>> getTeacherScoreList(TeacherScoreRequest request){
+          return adminActivationService.getTeacherScoreList(request);
+    }
 }

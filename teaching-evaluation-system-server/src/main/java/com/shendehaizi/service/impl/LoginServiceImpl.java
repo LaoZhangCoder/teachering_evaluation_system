@@ -43,7 +43,7 @@ public class LoginServiceImpl implements LoginService {
         if (roleId.equals(UserRole.Role_Student.roleId)) {
             //登入用户是学生
             HashMap<String, Object> map = Maps.newHashMap();
-            map.put("studentName",loginRequest.getUsername());
+            map.put("userId",loginRequest.getUserId());
             StudentModel studentModel = studentDao.findByUniqueIndex(map);
             if(studentModel==null){
                 log.error("用户名不存在!");
@@ -62,7 +62,7 @@ public class LoginServiceImpl implements LoginService {
         } else if (roleId.equals(UserRole.Role_Teacher.roleId)) {
             //登入用户是老师
             HashMap<String, Object> map = Maps.newHashMap();
-            map.put("teacherName",loginRequest.getUsername());
+            map.put("userId",loginRequest.getUserId());
             TeacherModel teacherModel = teacherDao.findByUniqueIndex(map);
             if(teacherModel==null){
                 log.error("用户名不存在!");

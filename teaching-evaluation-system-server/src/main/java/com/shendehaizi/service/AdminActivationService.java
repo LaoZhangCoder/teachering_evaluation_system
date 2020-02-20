@@ -3,6 +3,7 @@ package com.shendehaizi.service;
 
 import com.shendehaizi.request.AdminAddRequest;
 import com.shendehaizi.request.AdminUpdateRequest;
+import com.shendehaizi.request.TeacherScoreRequest;
 import com.shendehaizi.request.UserInfoRequest;
 import com.shendehaizi.response.*;
 
@@ -25,4 +26,6 @@ public interface AdminActivationService {
     Response<CountInfo> getCountInfos();
 
     Response<ProcessInfo> getProcessInfo();
+
+    Response<List<TeacherScore>> getTeacherScoreList(TeacherScoreRequest request);
 }

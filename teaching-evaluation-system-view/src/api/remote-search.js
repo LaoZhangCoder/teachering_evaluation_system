@@ -15,3 +15,10 @@ export function transactionList(token) {
     params: { token }
   })
 }
+export function transactionListt(userId) {
+  return request({
+    url: '/teacher/score/detail',
+    method: 'get',
+    params: { userId }
+  })
+}

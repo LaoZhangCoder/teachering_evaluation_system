@@ -146,7 +146,7 @@
       <br>
       <div align="center">
         <el-button type="primary" @click="submitForm()">提交</el-button>
-        <el-button @click="resetForm()">重置</el-button>
+        <el-button @click="resetForm()">返回</el-button>
       </div>
     </form>
   </div>
@@ -210,12 +210,15 @@ export default {
           })
         }
       })
+      this.$router.push('/student/score')
+    },
+    resetForm() {
+      this.$router.push('/student/score')
     }
   }
 }
 </script>
 <style>
   .app-container {
-    background-color: #ff4d51;
   }
 </style>

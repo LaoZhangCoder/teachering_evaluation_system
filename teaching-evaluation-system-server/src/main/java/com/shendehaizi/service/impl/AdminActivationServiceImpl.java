@@ -5,18 +5,15 @@ import com.shendehaizi.Exception.ServiceException;
 import com.shendehaizi.dao.*;
 import com.shendehaizi.model.*;
 import com.shendehaizi.model.AdminModel;
-import com.shendehaizi.model.AdminModel;
-import com.shendehaizi.model.AdminModel;
 import com.shendehaizi.request.AdminAddRequest;
 import com.shendehaizi.request.AdminUpdateRequest;
+import com.shendehaizi.request.TeacherScoreRequest;
 import com.shendehaizi.request.UserInfoRequest;
 import com.shendehaizi.response.*;
-import com.shendehaizi.response.AdminInfo;
 import com.shendehaizi.response.AdminInfo;
 import com.shendehaizi.service.AdminActivationService;
 import io.terminus.common.model.Paging;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -223,6 +220,61 @@ public class AdminActivationServiceImpl implements AdminActivationService {
         processInfo.setUnComplete(Integer.valueOf(String.valueOf((count-count1)/count*100).substring(0,2)));
         processInfoResponse.setResult(processInfo);
         return  processInfoResponse;
+    }
+
+    @Override
+    public Response<List<TeacherScore>> getTeacherScoreList(TeacherScoreRequest request) {
+        Response<List<TeacherScore>> listResponse = new Response<>();
+        HashMap<String, Object> map = Maps.newHashMap();
+        List<ScoreInfo> scoreInfoList = scoreRecordDao.getScoreInfoList();
+        if(scoreInfoList.isEmpty()) return  listResponse;
+        List<TeacherScore> teacherScoreList = scoreInfoList.stream().map(scoreInfo -> {
+            TeacherScore teacherScore = new TeacherScore();
+            teacherScore.setCount(scoreInfo.getCountScore());
+            teacherScore.setId(scoreInfo.getTeacherId());
+            map.put("id", scoreInfo.getTeacherId());
+            TeacherModel t = teacherDao.findByUniqueIndex(map);
+            teacherScore.setTeacherName(t.getTeacherName());
+            map.clear();
+            map.put("userId", t.getUserId());
+            List<TeacherCourseRelationModel> list = teacherCourseRelationDao.list(map);
+            if (!list.isEmpty()) {
+                list.stream().forEach(teacherCourseRelationModel -> {
+                    map.clear();
+                    map.put("id", teacherCourseRelationModel.getCourseId());
+                    CourseModel courseModel = courseDao.findByUniqueIndex(map);
+                    if(teacherScore.getCourseNames()!=null) {
+                        teacherScore.setCourseNames(teacherScore.getCourseNames() + courseModel.getCourseName()+','+'\n');
+                    }else{
+                        teacherScore.setCourseNames(courseModel.getCourseName());
+                    }
+                    map.put("id", teacherCourseRelationModel.getClassId());
+                    ClassModel classModel = classDao.findByUniqueIndex(map);
+                    if(teacherScore.getClassNames()!=null) {
+                        teacherScore.setClassNames(teacherScore.getClassNames() + classModel.getClassName()+','+'\n');
+                    }else{
+                        teacherScore.setClassNames(classModel.getClassName());
+                    }
+                });
+            }
+            return teacherScore;
+
+        }).collect(Collectors.toList());
+        teacherScoreList=teacherScoreList.stream().filter(teacherScore -> {
+            if(StringUtils.isEmpty(request.getTeacherName())){
+                return  true;
+            }else{
+                if(request.getTeacherName().equals(teacherScore.getTeacherName())){
+                    return  true;
+                }else{
+                    return  false;
+                }
+            }
+        }).collect(Collectors.toList());
+        listResponse.setCount(Long.valueOf(teacherScoreList.size()));
+        teacherScoreList=teacherScoreList.stream().skip((request.getPage() - 1) * request.getLimit()).limit(request.getLimit()).collect(Collectors.toList());
+        listResponse.setResult(teacherScoreList);
+        return listResponse;
     }
 
     private Predicate<UserInfoDetail> filter(UserInfoRequest request) {

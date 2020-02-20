@@ -15,6 +15,10 @@
         <result column="course_id" property="courseId" jdbcType="BIGINT"/>
         <result column="count_score" property="countScore" jdbcType="BIGINT"/>
     </resultMap>
+    <resultMap id="ScoreResult" type="ScoreInfo">
+        <result column="teacher_id" property="teacherId" jdbcType="BIGINT"/>
+        <result column="countScore" property="countScore" jdbcType="BIGINT"/>
+    </resultMap>
     <sql id="Base_Column_List">
         id, course_id,teacher_id, student_id,score,message, create_date,update_date
     </sql>
@@ -111,5 +115,9 @@
    SELECT SUM(score)count_score,course_id,teacher_id FROM score_record GROUP BY teacher_id ,course_id
    having
    teacher_id=#{teacherId}
+    </select>
+
+    <select id="scoreList"  resultMap="ScoreResult">
+        SELECT SUM(score)countScore, teacher_id FROM score_record GROUP BY teacher_id
     </select>
 </mapper>

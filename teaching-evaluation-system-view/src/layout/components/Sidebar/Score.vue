@@ -20,6 +20,13 @@ export default {
         }]
       }]
     }
+  },
+  methods: {
+    handleNodeClick: function(dropNode) {
+      if (dropNode.label === '当前分数') {
+        this.$router.push('/currentScore/index')
+      }
+    }
   }
 }
 </script>
